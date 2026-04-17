@@ -22,8 +22,9 @@
         }
 
         :root {
-            --cream: #FBF0E0;
-            --cream-dark: #F5E6D0;
+            --cream: #9BB3B9;
+            --cream-dark: #8AA3AA;
+            --cream-light: #A8C4CA;
             --beige: #EAD0A8;
             --terracotta: #C86B42;
             --terracotta-dark: #A85A3A;
@@ -50,6 +51,83 @@
             line-height: 1.7;
             overflow-x: hidden;
             position: relative;
+        }
+
+        /* ============================================
+           ANIMATED CLOUDS - Floating parallax effect
+           ============================================ */
+        .cloud-section {
+            position: relative;
+            overflow: hidden;
+        }
+        .cloud-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: 1;
+            background:
+                radial-gradient(ellipse 300px 100px at 15% 30%, rgba(255,255,255,0.15) 0%, transparent 70%),
+                radial-gradient(ellipse 400px 120px at 70% 60%, rgba(255,255,255,0.12) 0%, transparent 70%),
+                radial-gradient(ellipse 250px 80px at 45% 80%, rgba(255,255,255,0.10) 0%, transparent 70%),
+                radial-gradient(ellipse 350px 110px at 85% 20%, rgba(255,255,255,0.13) 0%, transparent 70%);
+            animation: cloudDrift 30s ease-in-out infinite alternate;
+        }
+        .cloud-section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: 1;
+            background:
+                radial-gradient(ellipse 200px 70px at 30% 50%, rgba(255,255,255,0.08) 0%, transparent 70%),
+                radial-gradient(ellipse 320px 90px at 60% 25%, rgba(255,255,255,0.10) 0%, transparent 70%),
+                radial-gradient(ellipse 280px 85px at 10% 75%, rgba(255,255,255,0.07) 0%, transparent 70%),
+                radial-gradient(ellipse 180px 60px at 90% 45%, rgba(255,255,255,0.09) 0%, transparent 70%);
+            animation: cloudDrift2 25s ease-in-out infinite alternate;
+        }
+        @keyframes cloudDrift {
+            0% { transform: translateX(0) scaleX(1); }
+            50% { transform: translateX(-40px) scaleX(1.05); }
+            100% { transform: translateX(30px) scaleX(0.97); }
+        }
+        @keyframes cloudDrift2 {
+            0% { transform: translateX(20px) translateY(0); }
+            50% { transform: translateX(-30px) translateY(8px); }
+            100% { transform: translateX(50px) translateY(-5px); }
+        }
+        .cloud-section > *:not(.cloud-section)::before::after {
+            position: relative;
+            z-index: 2;
+        }
+        .cloud-section .container,
+        .cloud-section > .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* SVG floating cloud shapes */
+        .floating-cloud {
+            position: absolute;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.06;
+            fill: white;
+        }
+        .floating-cloud:nth-child(1) { top: 10%; left: -5%; animation: floatCloud 40s linear infinite; }
+        .floating-cloud:nth-child(2) { top: 50%; left: 20%; opacity: 0.04; animation: floatCloud 55s linear infinite; animation-delay: -15s; }
+        .floating-cloud:nth-child(3) { top: 30%; left: 50%; opacity: 0.05; animation: floatCloud 45s linear infinite; animation-delay: -25s; }
+        .floating-cloud:nth-child(4) { top: 70%; left: 70%; opacity: 0.03; animation: floatCloud 60s linear infinite; animation-delay: -10s; }
+        .floating-cloud:nth-child(5) { top: 15%; left: 85%; opacity: 0.05; animation: floatCloud 35s linear infinite; animation-delay: -20s; }
+        @keyframes floatCloud {
+            0% { transform: translateX(-20vw); }
+            100% { transform: translateX(110vw); }
         }
 
         /* Texture overlay */
@@ -447,7 +525,9 @@
            ============================================ */
         .about {
             padding: 100px 0;
-            background: linear-gradient(180deg, var(--cream) 0%, #faf0dc 50%, var(--cream) 100%);
+            background: linear-gradient(180deg, var(--cream) 0%, var(--cream-light) 50%, var(--cream) 100%);
+            position: relative;
+            overflow: hidden;
             position: relative;
         }
 
@@ -736,7 +816,9 @@
            ============================================ */
         .menu {
             padding: 100px 0;
-            background: linear-gradient(180deg, var(--cream) 0%, #faf0dc 50%, var(--cream) 100%);
+            background: linear-gradient(180deg, var(--cream) 0%, var(--cream-light) 50%, var(--cream) 100%);
+            position: relative;
+            overflow: hidden;
             position: relative;
         }
 
@@ -846,7 +928,8 @@
         .gallery {
             padding: 100px 0;
             background: var(--cream);
-        }
+            position: relative;
+            overflow: hidden;
 
         .gallery-grid {
             display: grid;
@@ -1036,7 +1119,8 @@
         .contact {
             padding: 100px 0;
             background: var(--cream);
-        }
+            position: relative;
+            overflow: hidden;
 
         .contact-grid {
             display: grid;
@@ -1528,12 +1612,18 @@
     <!-- Cloud divider: hero → about -->
     <div class="cloud-divider">
         <svg viewBox="0 0 1440 90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0,50 C80,90 160,20 280,55 C380,85 480,15 600,45 C700,75 800,10 920,40 C1020,70 1120,15 1240,50 C1340,80 1400,30 1440,50 L1440,90 L0,90 Z" fill="#FBF0E0"/>
+            <path d="M0,50 C80,90 160,20 280,55 C380,85 480,15 600,45 C700,75 800,10 920,40 C1020,70 1120,15 1240,50 C1340,80 1400,30 1440,50 L1440,90 L0,90 Z" fill="#9BB3B9"/>
         </svg>
     </div>
 
     <!-- ========== ABOUT ========== -->
-    <section class="about" id="about">
+    <section class="about cloud-section" id="about">
+        <!-- Floating clouds -->
+        <svg class="floating-cloud" viewBox="0 0 200 80" width="300"><path d="M30,60 C15,60 5,50 5,38 C5,28 12,20 22,18 C24,8 35,0 48,0 C58,0 67,5 72,13 C75,10 80,8 86,8 C98,8 108,18 108,30 C118,26 130,32 130,44 C130,56 120,60 110,60 Z"/></svg>
+        <svg class="floating-cloud" viewBox="0 0 200 80" width="250"><path d="M30,60 C15,60 5,50 5,38 C5,28 12,20 22,18 C24,8 35,0 48,0 C58,0 67,5 72,13 C75,10 80,8 86,8 C98,8 108,18 108,30 C118,26 130,32 130,44 C130,56 120,60 110,60 Z"/></svg>
+        <svg class="floating-cloud" viewBox="0 0 200 80" width="350"><path d="M30,60 C15,60 5,50 5,38 C5,28 12,20 22,18 C24,8 35,0 48,0 C58,0 67,5 72,13 C75,10 80,8 86,8 C98,8 108,18 108,30 C118,26 130,32 130,44 C130,56 120,60 110,60 Z"/></svg>
+        <svg class="floating-cloud" viewBox="0 0 200 80" width="200"><path d="M30,60 C15,60 5,50 5,38 C5,28 12,20 22,18 C24,8 35,0 48,0 C58,0 67,5 72,13 C75,10 80,8 86,8 C98,8 108,18 108,30 C118,26 130,32 130,44 C130,56 120,60 110,60 Z"/></svg>
+        <svg class="floating-cloud" viewBox="0 0 200 80" width="280"><path d="M30,60 C15,60 5,50 5,38 C5,28 12,20 22,18 C24,8 35,0 48,0 C58,0 67,5 72,13 C75,10 80,8 86,8 C98,8 108,18 108,30 C118,26 130,32 130,44 C130,56 120,60 110,60 Z"/></svg>
         <div class="container">
             <div class="about-images">
                 <div class="about-img-main">
@@ -1589,10 +1679,14 @@
     </section>
 
     <!-- Cloud divider: specialties → menu -->
-    <div class="cloud-divider"><svg viewBox="0 0 1440 90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,45 C120,85 240,8 400,42 C520,78 640,12 800,48 C920,82 1060,15 1200,50 C1320,80 1400,25 1440,45 L1440,90 L0,90 Z" fill="#FBF0E0"/></svg></div>
+    <div class="cloud-divider"><svg viewBox="0 0 1440 90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,45 C120,85 240,8 400,42 C520,78 640,12 800,48 C920,82 1060,15 1200,50 C1320,80 1400,25 1440,45 L1440,90 L0,90 Z" fill="#9BB3B9"/></svg></div>
 
     <!-- ========== MENU ========== -->
-    <section class="menu" id="menu">
+    <section class="menu cloud-section" id="menu">
+        <svg class="floating-cloud" viewBox="0 0 200 80" width="300"><path d="M30,60 C15,60 5,50 5,38 C5,28 12,20 22,18 C24,8 35,0 48,0 C58,0 67,5 72,13 C75,10 80,8 86,8 C98,8 108,18 108,30 C118,26 130,32 130,44 C130,56 120,60 110,60 Z"/></svg>
+        <svg class="floating-cloud" viewBox="0 0 200 80" width="250"><path d="M30,60 C15,60 5,50 5,38 C5,28 12,20 22,18 C24,8 35,0 48,0 C58,0 67,5 72,13 C75,10 80,8 86,8 C98,8 108,18 108,30 C118,26 130,32 130,44 C130,56 120,60 110,60 Z"/></svg>
+        <svg class="floating-cloud" viewBox="0 0 200 80" width="350"><path d="M30,60 C15,60 5,50 5,38 C5,28 12,20 22,18 C24,8 35,0 48,0 C58,0 67,5 72,13 C75,10 80,8 86,8 C98,8 108,18 108,30 C118,26 130,32 130,44 C130,56 120,60 110,60 Z"/></svg>
+        <svg class="floating-cloud" viewBox="0 0 200 80" width="200"><path d="M30,60 C15,60 5,50 5,38 C5,28 12,20 22,18 C24,8 35,0 48,0 C58,0 67,5 72,13 C75,10 80,8 86,8 C98,8 108,18 108,30 C118,26 130,32 130,44 C130,56 120,60 110,60 Z"/></svg>
         <div class="container">
             <div class="section-header">
                 <div class="label"><svg class="cloud-icon" viewBox="0 0 40 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:18px;height:12px;"><path d="M8,20 C4.5,20 2,17.5 2,14.5 C2,11.8 4,9.6 6.5,9.2 C6.8,6.2 9.4,4 12.5,4 C14.8,4 16.8,5.2 17.8,7 C18.5,6.4 19.5,6 20.5,6 C22.8,6 24.7,7.8 24.8,10.2 C27.2,10.6 29,12.6 29,15 C29,17.8 26.8,20 24,20 Z" fill="currentColor" opacity="0.5"/></svg> Nuestra Carta</div>
@@ -1626,10 +1720,13 @@
     </section>
 
     <!-- Cloud divider: menu → gallery -->
-    <div class="cloud-divider"><svg viewBox="0 0 1440 90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,42 C90,80 180,8 320,48 C430,82 540,12 680,45 C780,78 880,10 1020,42 C1120,72 1220,12 1340,48 C1400,65 1440,35 1440,42 L1440,90 L0,90 Z" fill="#FBF0E0"/></svg></div>
+    <div class="cloud-divider"><svg viewBox="0 0 1440 90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,42 C90,80 180,8 320,48 C430,82 540,12 680,45 C780,78 880,10 1020,42 C1120,72 1220,12 1340,48 C1400,65 1440,35 1440,42 L1440,90 L0,90 Z" fill="#9BB3B9"/></svg></div>
 
     <!-- ========== GALLERY ========== -->
-    <section class="gallery" id="gallery">
+    <section class="gallery cloud-section" id="gallery">
+        <svg class="floating-cloud" viewBox="0 0 200 80" width="300"><path d="M30,60 C15,60 5,50 5,38 C5,28 12,20 22,18 C24,8 35,0 48,0 C58,0 67,5 72,13 C75,10 80,8 86,8 C98,8 108,18 108,30 C118,26 130,32 130,44 C130,56 120,60 110,60 Z"/></svg>
+        <svg class="floating-cloud" viewBox="0 0 200 80" width="250"><path d="M30,60 C15,60 5,50 5,38 C5,28 12,20 22,18 C24,8 35,0 48,0 C58,0 67,5 72,13 C75,10 80,8 86,8 C98,8 108,18 108,30 C118,26 130,32 130,44 C130,56 120,60 110,60 Z"/></svg>
+        <svg class="floating-cloud" viewBox="0 0 200 80" width="350"><path d="M30,60 C15,60 5,50 5,38 C5,28 12,20 22,18 C24,8 35,0 48,0 C58,0 67,5 72,13 C75,10 80,8 86,8 C98,8 108,18 108,30 C118,26 130,32 130,44 C130,56 120,60 110,60 Z"/></svg>
         <div class="container">
             <div class="section-header">
                 <div class="label"><svg class="cloud-icon" viewBox="0 0 40 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:18px;height:12px;"><path d="M8,20 C4.5,20 2,17.5 2,14.5 C2,11.8 4,9.6 6.5,9.2 C6.8,6.2 9.4,4 12.5,4 C14.8,4 16.8,5.2 17.8,7 C18.5,6.4 19.5,6 20.5,6 C22.8,6 24.7,7.8 24.8,10.2 C27.2,10.6 29,12.6 29,15 C29,17.8 26.8,20 24,20 Z" fill="currentColor" opacity="0.5"/></svg> Nuestro Espacio</div>
@@ -1683,10 +1780,13 @@
     </section>
 
     <!-- Cloud divider: reviews → contact -->
-    <div class="cloud-divider"><svg viewBox="0 0 1440 90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,48 C180,10 360,82 540,42 C720,5 900,80 1080,45 C1200,15 1340,65 1440,40 L1440,90 L0,90 Z" fill="#FBF0E0"/></svg></div>
+    <div class="cloud-divider"><svg viewBox="0 0 1440 90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,48 C180,10 360,82 540,42 C720,5 900,80 1080,45 C1200,15 1340,65 1440,40 L1440,90 L0,90 Z" fill="#9BB3B9"/></svg></div>
 
     <!-- ========== CONTACT ========== -->
-    <section class="contact" id="contact">
+    <section class="contact cloud-section" id="contact">
+        <svg class="floating-cloud" viewBox="0 0 200 80" width="300"><path d="M30,60 C15,60 5,50 5,38 C5,28 12,20 22,18 C24,8 35,0 48,0 C58,0 67,5 72,13 C75,10 80,8 86,8 C98,8 108,18 108,30 C118,26 130,32 130,44 C130,56 120,60 110,60 Z"/></svg>
+        <svg class="floating-cloud" viewBox="0 0 200 80" width="250"><path d="M30,60 C15,60 5,50 5,38 C5,28 12,20 22,18 C24,8 35,0 48,0 C58,0 67,5 72,13 C75,10 80,8 86,8 C98,8 108,18 108,30 C118,26 130,32 130,44 C130,56 120,60 110,60 Z"/></svg>
+        <svg class="floating-cloud" viewBox="0 0 200 80" width="200"><path d="M30,60 C15,60 5,50 5,38 C5,28 12,20 22,18 C24,8 35,0 48,0 C58,0 67,5 72,13 C75,10 80,8 86,8 C98,8 108,18 108,30 C118,26 130,32 130,44 C130,56 120,60 110,60 Z"/></svg>
         <div class="container">
             <div class="section-header">
                 <div class="label"><svg class="cloud-icon" viewBox="0 0 40 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:18px;height:12px;"><path d="M8,20 C4.5,20 2,17.5 2,14.5 C2,11.8 4,9.6 6.5,9.2 C6.8,6.2 9.4,4 12.5,4 C14.8,4 16.8,5.2 17.8,7 C18.5,6.4 19.5,6 20.5,6 C22.8,6 24.7,7.8 24.8,10.2 C27.2,10.6 29,12.6 29,15 C29,17.8 26.8,20 24,20 Z" fill="currentColor" opacity="0.5"/></svg> Ven a visitarnos</div>
