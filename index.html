@@ -1,0 +1,2315 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>En Las Nubes Restobar | Cocina Fusión en Logroño</title>
+    <meta name="description" content="Restobar en pleno centro de Logroño. Cocina fusión asturiana, alemana y mediterránea. Especialistas en cachopos. Terraza, ambiente vintage. Reserva ahora.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        /* ============================================
+           RESET & BASE
+           ============================================ */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --cream: #FBF0E0;
+            --cream-dark: #F5E6D0;
+            --beige: #EAD0A8;
+            --terracotta: #C86B42;
+            --terracotta-dark: #A85A3A;
+            --terracotta-light: #D4896A;
+            --brown-dark: #2C1810;
+            --brown-medium: #4A3228;
+            --brown-warm: #5C4033;
+            --gold: #D4A843;
+            --gold-light: #E8C36A;
+            --sunset: #E8945A;
+            --text-dark: #2C1810;
+            --text-medium: #5C4033;
+            --text-light: #8B7355;
+            --white: #FEFCF9;
+            --shadow: rgba(44, 24, 16, 0.15);
+        }
+
+        html { scroll-behavior: smooth; font-size: 16px; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            background: var(--cream);
+            line-height: 1.7;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Texture overlay */
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 256px 256px;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            line-height: 1.2;
+        }
+
+        a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
+        img { max-width: 100%; display: block; }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ============================================
+           SECTION HEADER ORNAMENT
+           ============================================ */
+        .section-header h2 {
+            position: relative;
+            display: inline-block;
+        }
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            border-radius: 2px;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        .section-header::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(212,168,67,0.06) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        .section-header > * { position: relative; z-index: 1; }
+
+        /* ============================================
+           CLOUD DIVIDER
+           ============================================ */
+        .cloud-divider {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+            z-index: 2;
+        }
+        .cloud-divider svg {
+            display: block;
+            width: 100%;
+            height: 90px;
+        }
+
+        /* Decorative cloud icon */
+        .cloud-icon {
+            display: inline-block;
+            width: 22px;
+            height: 14px;
+            vertical-align: middle;
+            margin-right: 4px;
+        }
+
+        /* ============================================
+           NAVIGATION
+           ============================================ */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 16px 0;
+            transition: all 0.4s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(251, 240, 224, 0.95);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 2px 20px var(--shadow);
+            padding: 10px 0;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--white);
+            transition: color 0.4s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        nav.scrolled .nav-logo { color: var(--brown-dark); }
+
+        .nav-logo span { color: var(--gold); }
+
+        .nav-logo .cloud-icon {
+            opacity: 0.7;
+            animation: floatSmall 4s ease-in-out infinite;
+        }
+
+        nav.scrolled .nav-logo .cloud-icon path { fill: var(--brown-dark); }
+
+        @keyframes floatSmall {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-3px); }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: var(--white);
+            opacity: 0.9;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav.scrolled .nav-links a { color: var(--text-medium); }
+
+        .nav-links a:hover { opacity: 1; color: var(--gold); }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after { width: 100%; }
+
+        .nav-cta {
+            background: var(--terracotta) !important;
+            color: var(--white) !important;
+            padding: 8px 20px;
+            border-radius: 50px;
+            opacity: 1 !important;
+            transition: all 0.3s ease !important;
+        }
+
+        .nav-cta:hover {
+            background: var(--terracotta-dark) !important;
+            transform: translateY(-1px);
+        }
+
+        .nav-cta::after { display: none !important; }
+
+        /* Mobile menu */
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .nav-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--white);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled .nav-toggle span { background: var(--brown-dark); }
+
+        /* ============================================
+           HERO — Worley + FBM WebGL Cloud Sky
+           ============================================ */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            height: 100dvh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #0d1c40;
+        }
+
+        #sky-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+            z-index: 0;
+        }
+
+        /* Dark gradient overlay at bottom for readability */
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            background: linear-gradient(to bottom, rgba(0,0,0,0) 45%, rgba(4,10,30,0.65) 100%);
+        }
+
+        #hero > *:not(#sky-canvas) {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Hero content overlay */
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: #fff;
+            padding: 0 1.5rem;
+            max-width: 800px;
+        }
+
+        /* Glass badge */
+        .hero-badge {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            display: inline-block;
+            font-size: clamp(0.68rem, 1.3vw, 0.9rem);
+            letter-spacing: 0.42em;
+            text-transform: uppercase;
+            color: rgba(205, 222, 255, 0.80);
+            margin-bottom: 1rem;
+            text-shadow: 0 1px 20px rgba(0, 0, 0, 0.6);
+            padding: 10px 28px;
+            border: 1px solid rgba(182, 208, 255, 0.30);
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: clamp(2.8rem, 9vw, 8rem);
+            font-weight: 300;
+            line-height: 1.0;
+            letter-spacing: 0.04em;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            text-shadow: 0 2px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero h1 em {
+            display: block;
+            font-style: italic;
+            color: rgba(222, 234, 255, 0.95);
+            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-subtitle {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: clamp(0.82rem, 1.7vw, 1.2rem);
+            font-weight: 300;
+            letter-spacing: 0.10em;
+            color: rgba(192, 212, 255, 0.72);
+            max-width: 550px;
+            margin: 0 auto 2rem;
+            line-height: 1.7;
+            text-shadow: 0 1px 18px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0.85rem 2.2rem;
+            border-radius: 2px;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 0.82rem;
+            font-weight: 400;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            transition: all 0.35s ease;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            border: 1px solid rgba(182, 208, 255, 0.48);
+            color: rgba(212, 230, 255, 1);
+            backdrop-filter: blur(8px);
+            background: rgba(8, 16, 50, 0.20);
+        }
+
+        .btn-primary:hover {
+            background: rgba(55, 95, 210, 0.18);
+            border-color: rgba(182, 208, 255, 0.85);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            border: 1px solid rgba(182, 208, 255, 0.35);
+            color: rgba(212, 230, 255, 0.85);
+            backdrop-filter: blur(8px);
+            background: rgba(8, 16, 50, 0.12);
+        }
+
+        .btn-outline:hover {
+            background: rgba(55, 95, 210, 0.15);
+            border-color: rgba(182, 208, 255, 0.70);
+            color: rgba(212, 230, 255, 1);
+            transform: translateY(-2px);
+        }
+
+        .hero-scroll {
+            margin-top: 2.5rem;
+            z-index: 2;
+            color: rgba(192, 212, 255, 0.55);
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 0.72rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-align: center;
+            animation: bounce 2s ease infinite;
+        }
+
+        .hero-scroll i {
+            display: block;
+            margin-top: 8px;
+            font-size: 0.9rem;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(8px); }
+        }
+
+        @media(max-width:480px){
+            .hero-badge { letter-spacing: 0.22em; margin-bottom: 0.7rem; }
+            .hero h1 { font-size: clamp(2.4rem, 13vw, 4rem); margin-bottom: 0.8rem; }
+            .hero-subtitle { letter-spacing: 0.06em; margin-bottom: 1.5rem; }
+            .btn { padding: 0.75rem 1.8rem; letter-spacing: 0.16em; }
+            .hero-scroll { margin-top: 1.8rem; }
+        }
+
+        /* ============================================
+           ABOUT SECTION — Warm cream
+           ============================================ */
+        .about {
+            padding: 100px 0;
+            background: linear-gradient(180deg, var(--cream) 0%, #faf0dc 50%, var(--cream) 100%);
+            position: relative;
+        }
+
+        .about .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-images {
+            position: relative;
+            height: 500px;
+        }
+
+        .about-img-main {
+            width: 75%;
+            height: 450px;
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(44, 24, 16, 0.15);
+        }
+
+        .about-img-main img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.5s ease;
+        }
+
+        .about-img-main:hover img { transform: scale(1.05); }
+
+        .about-img-accent {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 60%;
+            height: 320px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(44, 24, 16, 0.2);
+        }
+
+        .about-img-accent img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.5s ease;
+        }
+
+        .about-img-accent:hover img { transform: scale(1.05); }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            color: var(--brown-dark);
+            margin-bottom: 24px;
+        }
+
+        .about-text h2 span { color: var(--sunset); }
+
+        .about-text p {
+            color: var(--text-medium);
+            margin-bottom: 16px;
+            font-size: 0.95rem;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 32px;
+        }
+
+        .about-feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(44, 24, 16, 0.06), 0 0 15px rgba(212,168,67,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .about-feature:hover {
+            box-shadow: 0 4px 15px rgba(44, 24, 16, 0.1), 0 0 20px rgba(212,168,67,0.1);
+            transform: translateY(-2px);
+        }
+
+        .about-feature i {
+            color: var(--sunset);
+            font-size: 1.2rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .about-feature span {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        /* ============================================
+           SPECIALTIES SECTION — Dark with warm glow
+           ============================================ */
+        .specialties {
+            padding: 100px 0;
+            background: var(--brown-dark);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .specialties::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(212,168,67,0.08) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .specialties::after {
+            content: '';
+            position: absolute;
+            bottom: -80px;
+            left: -80px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(200,107,66,0.06) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        /* Warm inner glow */
+        .specialties .container::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(232,195,106,0.04) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header .label {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--sunset);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .specialties .section-header .label { color: var(--gold); }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--brown-dark);
+        }
+
+        .specialties .section-header h2 { color: var(--white); }
+
+        .section-header p {
+            color: var(--text-light);
+            max-width: 500px;
+            margin: 16px auto 0;
+        }
+
+        .specialties .section-header p { color: rgba(255, 245, 230, 0.6); }
+
+        .specialties-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .specialty-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .specialty-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(212,168,67,0.08) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .specialty-card:hover::before { opacity: 1; }
+
+        /* Golden shimmer sweep */
+        .specialty-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212,168,67,0.08), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .specialty-card:hover::after { left: 150%; }
+
+        .specialty-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-5px);
+            border-color: rgba(212, 168, 67, 0.3);
+            box-shadow: 0 0 25px rgba(212, 168, 67, 0.1), 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .specialty-card .card-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 24px;
+            background: linear-gradient(135deg, var(--terracotta), var(--terracotta-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--white);
+            animation: iconPulse 3s ease-in-out infinite;
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes iconPulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(200,107,66,0.3); }
+            50% { box-shadow: 0 0 15px 5px rgba(200,107,66,0.15); }
+        }
+
+        .specialty-card h3 {
+            font-size: 1.3rem;
+            color: var(--white);
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .specialty-card p {
+            color: rgba(255, 245, 230, 0.6);
+            font-size: 0.9rem;
+            line-height: 1.7;
+            position: relative;
+            z-index: 1;
+        }
+
+        .specialty-card .price {
+            display: inline-block;
+            margin-top: 16px;
+            padding: 6px 16px;
+            background: rgba(212, 168, 67, 0.15);
+            border-radius: 50px;
+            color: var(--gold-light);
+            font-weight: 600;
+            font-size: 0.85rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ============================================
+           MENU SECTION — Cream with warm accents
+           ============================================ */
+        .menu {
+            padding: 100px 0;
+            background: linear-gradient(180deg, var(--cream) 0%, #faf0dc 50%, var(--cream) 100%);
+            position: relative;
+        }
+
+        .menu-categories {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+
+        .menu-cat-btn {
+            padding: 10px 24px;
+            border-radius: 50px;
+            border: 1px solid var(--beige);
+            background: transparent;
+            color: var(--text-medium);
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .menu-cat-btn.active,
+        .menu-cat-btn:hover {
+            background: var(--terracotta);
+            color: var(--white);
+            border-color: var(--terracotta);
+        }
+
+        .menu-cat-btn.active { box-shadow: 0 0 15px rgba(200,107,66,0.3); }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 24px;
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(44, 24, 16, 0.05);
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(200, 107, 66, 0.12);
+            border-left-color: var(--gold);
+        }
+
+        .menu-item-info h4 {
+            font-size: 1rem;
+            color: var(--brown-dark);
+            margin-bottom: 4px;
+        }
+
+        .menu-item-info p {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        .menu-item-tags {
+            display: flex;
+            gap: 6px;
+            margin-top: 8px;
+        }
+
+        .menu-tag {
+            padding: 2px 8px;
+            background: var(--cream);
+            border-radius: 4px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .menu-tag.veg { background: #e8f5e9; color: #2e7d32; }
+        .menu-tag.gf { background: #fff3e0; color: #e65100; }
+
+        .menu-item-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--terracotta);
+            white-space: nowrap;
+            margin-left: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-item:hover .menu-item-price {
+            color: var(--gold);
+            text-shadow: 0 0 8px rgba(212,168,67,0.3);
+        }
+
+        /* ============================================
+           GALLERY SECTION
+           ============================================ */
+        .gallery {
+            padding: 100px 0;
+            background: var(--cream);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: 280px 280px;
+            gap: 16px;
+        }
+
+        .gallery-item {
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover { transform: rotate(1deg) scale(1.02); }
+
+        /* Warm vignette overlay */
+        .gallery-item::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at center, transparent 50%, rgba(200,107,66,0.12) 100%),
+                linear-gradient(135deg, rgba(200,107,66,0.06) 0%, rgba(212,168,67,0.04) 100%);
+            z-index: 1;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover::before {
+            background:
+                radial-gradient(ellipse at center, transparent 40%, rgba(200,107,66,0.2) 100%),
+                linear-gradient(135deg, rgba(200,107,66,0.1) 0%, rgba(212,168,67,0.08) 100%);
+        }
+
+        .gallery-item:nth-child(1) {
+            grid-column: span 1;
+            grid-row: span 2;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.5s ease, filter 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.08);
+            filter: saturate(1.15) brightness(1.05) sepia(0.08);
+        }
+
+        .gallery-item::after {
+            content: attr(data-label);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            background: linear-gradient(transparent, rgba(44, 24, 16, 0.75));
+            color: var(--gold-light);
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.4s ease;
+            z-index: 2;
+        }
+
+        .gallery-item:hover::after {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ============================================
+           REVIEWS SECTION — Brown-dark
+           ============================================ */
+        .reviews {
+            padding: 100px 0;
+            background: var(--brown-dark);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .review-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.06) 0%, rgba(212,168,67,0.04) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-image: linear-gradient(145deg, rgba(212,168,67,0.2), rgba(200,107,66,0.1)) 1;
+            border-radius: 16px;
+            padding: 32px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .review-card:hover {
+            background: linear-gradient(145deg, rgba(255,255,255,0.1) 0%, rgba(212,168,67,0.08) 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+
+        .review-stars {
+            color: var(--gold-light);
+            font-size: 0.85rem;
+            margin-bottom: 16px;
+            letter-spacing: 2px;
+            text-shadow: 0 0 8px rgba(212,168,67,0.3);
+        }
+
+        .review-text {
+            color: rgba(255, 245, 230, 0.7);
+            font-size: 0.9rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .review-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .review-avatar {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--sunset), var(--gold));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+
+        .review-author-info h4 {
+            color: var(--white);
+            font-size: 0.9rem;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .review-author-info span {
+            color: rgba(255, 245, 230, 0.4);
+            font-size: 0.75rem;
+        }
+
+        .reviews-stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .stat { text-align: center; }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--gold-light);
+            text-shadow: 0 0 10px rgba(212,168,67,0.2);
+        }
+
+        .stat-label {
+            color: rgba(255, 245, 230, 0.5);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 4px;
+        }
+
+        /* ============================================
+           CONTACT SECTION — Cream
+           ============================================ */
+        .contact {
+            padding: 100px 0;
+            background: var(--cream);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .contact-info h3 {
+            font-size: 1.8rem;
+            color: var(--brown-dark);
+            margin-bottom: 24px;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+
+        .contact-item-icon {
+            width: 48px;
+            height: 48px;
+            min-width: 48px;
+            background: var(--white);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--sunset);
+            font-size: 1.1rem;
+            box-shadow: 0 2px 10px rgba(44, 24, 16, 0.06);
+        }
+
+        .contact-item-text h4 {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-light);
+            margin-bottom: 4px;
+        }
+
+        .contact-item-text p,
+        .contact-item-text a {
+            color: var(--brown-dark);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .contact-item-text a:hover { color: var(--terracotta); }
+
+        .schedule {
+            margin-top: 32px;
+            padding: 24px;
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(44, 24, 16, 0.06);
+            border-left: 3px solid var(--gold);
+        }
+
+        .schedule h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: var(--brown-dark);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .schedule h4 i { color: var(--sunset); }
+
+        .schedule-table { width: 100%; }
+
+        .schedule-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--cream-dark);
+            font-size: 0.85rem;
+        }
+
+        .schedule-row:last-child { border-bottom: none; }
+        .schedule-row .day { color: var(--text-medium); font-weight: 500; }
+        .schedule-row .hours { color: var(--brown-dark); font-weight: 600; }
+        .schedule-row .closed { color: var(--terracotta); }
+
+        .schedule-note {
+            margin-top: 16px;
+            padding: 12px 16px;
+            background: var(--cream);
+            border-radius: 8px;
+            font-size: 0.8rem;
+            color: var(--text-medium);
+            line-height: 1.6;
+        }
+
+        .schedule-note i {
+            color: var(--sunset);
+            margin-right: 6px;
+        }
+
+        .contact-map {
+            border-radius: 16px;
+            overflow: hidden;
+            height: 100%;
+            min-height: 500px;
+            box-shadow: 0 10px 40px rgba(44, 24, 16, 0.15);
+            border: 3px solid var(--beige);
+        }
+
+        .contact-map iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 500px;
+            border: none;
+        }
+
+        .contact-social {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .social-link {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-medium);
+            font-size: 1.1rem;
+            box-shadow: 0 2px 10px rgba(44, 24, 16, 0.06);
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover { transform: translateY(-2px); }
+
+        .social-link.instagram:hover {
+            background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            color: var(--white);
+        }
+
+        .social-link.facebook:hover { background: #1877f2; color: var(--white); }
+        .social-link.tripadvisor:hover { background: #34e0a1; color: #004629; }
+        .social-link.ubereats:hover { background: #06C167; color: var(--white); }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        footer {
+            background: var(--brown-dark);
+            padding: 60px 0 30px;
+            color: rgba(255, 245, 230, 0.5);
+            border-top: 2px solid;
+            border-image: linear-gradient(90deg, transparent, var(--gold), var(--gold-light), var(--gold), transparent) 1;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            right: 5%;
+            width: 200px;
+            height: 80px;
+            opacity: 0.03;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20,60 C20,45 40,35 60,38 C55,20 80,10 100,15 C110,5 135,8 145,20 C160,12 180,20 175,35 C195,38 190,55 170,58 C175,70 155,75 140,68 C125,78 95,75 85,65 C65,75 35,70 30,58 C15,62 10,55 20,60 Z' fill='white'/%3E%3C/svg%3E") no-repeat center/contain;
+            pointer-events: none;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: var(--white);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .footer-brand h3 span {
+            color: var(--gold-light);
+        }
+
+        .footer-brand p {
+            font-size: 0.85rem;
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .footer-col h4 {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gold);
+            margin-bottom: 16px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .footer-col ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 7px;
+            width: 12px;
+            height: 8px;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 12 8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2,6 C2,4.5 3,3.5 4.5,3.8 C4.2,2 5.5,1 7,1.2 C7.8,0.5 9,0.8 9.2,1.8 C10.5,1.5 11,2.5 10.5,3.5 C11.2,4 11,5 10,5.2 C10.2,6 9,6.5 8.2,6 C7.2,6.5 5.5,6.2 5,5.5 C3.8,6 2.5,5.8 2,6 Z' fill='%23D4A843' opacity='0.5'/%3E%3C/svg%3E") no-repeat center/contain;
+        }
+
+        .footer-col ul li a {
+            font-size: 0.85rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--gold-light);
+        }
+
+        .footer-bottom {
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+        }
+
+        .footer-bottom a {
+            color: var(--gold);
+        }
+
+        .footer-bottom a:hover {
+            color: var(--gold-light);
+        }
+
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .about .container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .about-images {
+                height: 400px;
+            }
+
+            .specialties-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: repeat(3, 200px);
+            }
+
+            .gallery-item:nth-child(1) {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+
+            .reviews-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: var(--brown-dark);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 24px;
+                z-index: 999;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                font-size: 1.1rem;
+                color: var(--white) !important;
+            }
+
+            .nav-toggle {
+                display: flex;
+                z-index: 1001;
+            }
+
+            .nav-toggle.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            .nav-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .nav-toggle.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(5px, -5px);
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .specialties-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: repeat(3, 180px);
+            }
+
+            .gallery-item:nth-child(1) {
+                grid-column: span 2;
+            }
+
+            .reviews-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .reviews-stats {
+                gap: 30px;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .about-features {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 12px;
+                text-align: center;
+            }
+
+            .cloud-divider svg {
+                height: 50px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .about-images {
+                height: 300px;
+            }
+
+            .about-img-main {
+                width: 100%;
+                height: 250px;
+            }
+
+            .about-img-accent {
+                width: 70%;
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== NAVIGATION ========== -->
+    <nav id="navbar">
+        <div class="container">
+            <a href="#hero" class="nav-logo">
+                <svg class="cloud-icon" viewBox="0 0 40 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8,20 C4.5,20 2,17.5 2,14.5 C2,11.8 4,9.6 6.5,9.2 C6.8,6.2 9.4,4 12.5,4 C14.8,4 16.8,5.2 17.8,7 C18.5,6.4 19.5,6 20.5,6 C22.8,6 24.7,7.8 24.8,10.2 C27.2,10.6 29,12.6 29,15 C29,17.8 26.8,20 24,20 Z" fill="currentColor" opacity="0.6"/>
+                </svg>
+                En Las <span>Nubes</span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about">Nosotros</a></li>
+                <li><a href="#specialties">Especialidades</a></li>
+                <li><a href="#menu">Carta</a></li>
+                <li><a href="#gallery">Galería</a></li>
+                <li><a href="#reviews">Opiniones</a></li>
+                <li><a href="#contact">Contacto</a></li>
+                <li><a href="tel:+34941578451" class="nav-cta"><i class="fas fa-phone"></i> Reservar</a></li>
+            </ul>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========== HERO — Worley + FBM WebGL Cloud Sky ========== -->
+    <section class="hero" id="hero">
+        <canvas id="sky-canvas"></canvas>
+
+        <div class="hero-content">
+            <div class="hero-badge">Cocina Fusión · Logroño</div>
+            <h1>En Las <em>Nubes</em> Restobar</h1>
+            <p class="hero-subtitle">
+                Asturiana · Alemana · Mediterránea
+            </p>
+            <div class="hero-buttons">
+                <a href="tel:+34941578451" class="btn btn-primary">
+                    <i class="fas fa-phone"></i> Reservar Mesa
+                </a>
+                <a href="#menu" class="btn btn-outline">
+                    <i class="fas fa-utensils"></i> Ver Carta
+                </a>
+            </div>
+            <div class="hero-scroll">
+                Descubre más
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+    </section>
+    <!-- Cloud divider: hero → about -->
+    <div class="cloud-divider">
+        <svg viewBox="0 0 1440 90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,50 C80,90 160,20 280,55 C380,85 480,15 600,45 C700,75 800,10 920,40 C1020,70 1120,15 1240,50 C1340,80 1400,30 1440,50 L1440,90 L0,90 Z" fill="#FBF0E0"/>
+        </svg>
+    </div>
+
+    <!-- ========== ABOUT ========== -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-images">
+                <div class="about-img-main">
+                    <img src="fotos/ENTRADA DEL RESTOBAR.jpg" alt="Entrada En Las Nubes Restobar" loading="lazy">
+                </div>
+                <div class="about-img-accent">
+                    <img src="fotos/COMEDOR EN LAS NUBES.jpg" alt="Comedor En Las Nubes Restobar" loading="lazy">
+                </div>
+            </div>
+            <div class="about-text">
+                <div class="section-header" style="text-align:left;">
+                    <div class="label">
+                        <svg class="cloud-icon" viewBox="0 0 40 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:18px;height:12px;"><path d="M8,20 C4.5,20 2,17.5 2,14.5 C2,11.8 4,9.6 6.5,9.2 C6.8,6.2 9.4,4 12.5,4 C14.8,4 16.8,5.2 17.8,7 C18.5,6.4 19.5,6 20.5,6 C22.8,6 24.7,7.8 24.8,10.2 C27.2,10.6 29,12.6 29,15 C29,17.8 26.8,20 24,20 Z" fill="currentColor" opacity="0.5"/></svg>
+                        Nuestra Historia
+                    </div>
+                </div>
+                <h2>Un lugar <span>sobre Logroño</span></h2>
+                <p>En pleno centro histórico de Logroño, a tan solo 5 minutos del casco antiguo y de la Gran Vía, encontrarás un espacio con mucho encanto donde degustar lo mejor de la gastronomía internacional.</p>
+                <p>Nuestro estilo industrial y vintage, combinado con una terraza en calle peatonal tranquila, crea el ambiente perfecto para disfrutar de una comida memorable con amigos, familia o compañeros de trabajo.</p>
+                <p>Con capacidad para 99 personas (55 en interior y 44 en terraza), somos el lugar ideal para cualquier celebración.</p>
+                <div class="about-features">
+                    <div class="about-feature"><i class="fas fa-cloud"></i><span>Terraza al aire libre</span></div>
+                    <div class="about-feature"><i class="fas fa-leaf"></i><span>Opciones sin gluten</span></div>
+                    <div class="about-feature"><i class="fas fa-seedling"></i><span>Opciones vegetarianas</span></div>
+                    <div class="about-feature"><i class="fas fa-wine-glass-alt"></i><span>Vinos de La Rioja</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cloud divider: about → specialties -->
+    <div class="cloud-divider">
+        <svg viewBox="0 0 1440 90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,35 C100,75 200,5 340,40 C440,75 560,10 700,45 C820,80 940,8 1080,42 C1180,72 1300,15 1440,45 L1440,90 L0,90 Z" fill="#2C1810"/></svg>
+    </div>
+
+    <!-- ========== SPECIALTIES ========== -->
+    <section class="specialties" id="specialties">
+        <div class="container">
+            <div class="section-header">
+                <div class="label"><svg class="cloud-icon" viewBox="0 0 40 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:18px;height:12px;"><path d="M8,20 C4.5,20 2,17.5 2,14.5 C2,11.8 4,9.6 6.5,9.2 C6.8,6.2 9.4,4 12.5,4 C14.8,4 16.8,5.2 17.8,7 C18.5,6.4 19.5,6 20.5,6 C22.8,6 24.7,7.8 24.8,10.2 C27.2,10.6 29,12.6 29,15 C29,17.8 26.8,20 24,20 Z" fill="currentColor" opacity="0.5"/></svg> Nuestras Estrellas</div>
+                <h2>Especialidades</h2>
+                <p>Platos que nos definen, elaborados con los mejores ingredientes</p>
+            </div>
+            <div class="specialties-grid">
+                <div class="specialty-card"><div class="card-icon"><i class="fas fa-drumstick-bite"></i></div><h3>Cachopo Tradicional</h3><p>El plato estrella de la casa. Ternera empanada rellena de jamón y queso, servido con patatas y pimientos.</p><div class="price">32€</div></div>
+                <div class="specialty-card"><div class="card-icon"><i class="fas fa-bacon"></i></div><h3>Cachopo Bacon &amp; Carbonara</h3><p>Nuestra versión creativa del clásico asturiano con bacon crujiente y salsa carbonara casera.</p><div class="price">33€</div></div>
+                <div class="specialty-card"><div class="card-icon"><i class="fas fa-cheese"></i></div><h3>Cachopo Cecina &amp; Queso de Cabra</h3><p>Cecina de León y queso de cabra fundido, combinación perfecta de sabores intensos.</p><div class="price">33€</div></div>
+                <div class="specialty-card"><div class="card-icon"><i class="fas fa-hotdog"></i></div><h3>Currywurst</h3><p>Salchicha alemana con salsa curry casera, acompañada de patatas fritas. Auténtica street food alemana.</p><div class="price">12€</div></div>
+                <div class="specialty-card"><div class="card-icon"><i class="fas fa-drumstick-bite"></i></div><h3>Codillo Asado</h3><p>Codillo de cerdo horneado lentamente con puré de patata casero y chucrut. Tradición bávara.</p><div class="price">18€</div></div>
+                <div class="specialty-card"><div class="card-icon"><i class="fas fa-utensils"></i></div><h3>Schålchtplatte</h3><p>Surtido de salchichas, codillo y Leberkäs con puré de patata y chucrut. Para compartir.</p><div class="price">22€</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cloud divider: specialties → menu -->
+    <div class="cloud-divider"><svg viewBox="0 0 1440 90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,45 C120,85 240,8 400,42 C520,78 640,12 800,48 C920,82 1060,15 1200,50 C1320,80 1400,25 1440,45 L1440,90 L0,90 Z" fill="#FBF0E0"/></svg></div>
+
+    <!-- ========== MENU ========== -->
+    <section class="menu" id="menu">
+        <div class="container">
+            <div class="section-header">
+                <div class="label"><svg class="cloud-icon" viewBox="0 0 40 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:18px;height:12px;"><path d="M8,20 C4.5,20 2,17.5 2,14.5 C2,11.8 4,9.6 6.5,9.2 C6.8,6.2 9.4,4 12.5,4 C14.8,4 16.8,5.2 17.8,7 C18.5,6.4 19.5,6 20.5,6 C22.8,6 24.7,7.8 24.8,10.2 C27.2,10.6 29,12.6 29,15 C29,17.8 26.8,20 24,20 Z" fill="currentColor" opacity="0.5"/></svg> Nuestra Carta</div>
+                <h2>Menú</h2>
+                <p>Descubre nuestra propuesta gastronómica, fusionando sabores de tres cocinas</p>
+            </div>
+            <div class="menu-categories">
+                <button class="menu-cat-btn active" data-cat="todos">Todos</button>
+                <button class="menu-cat-btn" data-cat="asturiana">Asturiana</button>
+                <button class="menu-cat-btn" data-cat="alemana">Alemana</button>
+                <button class="menu-cat-btn" data-cat="mediterranea">Mediterránea</button>
+                <button class="menu-cat-btn" data-cat="postres">Postres</button>
+            </div>
+            <div class="menu-grid">
+                <div class="menu-item" data-cat="asturiana"><div class="menu-item-info"><h4>Cachopo Tradicional</h4><p>Ternera, jamón, queso, patatas y pimientos</p><div class="menu-item-tags"><span class="menu-tag gf">Sin gluten</span></div></div><div class="menu-item-price">32€</div></div>
+                <div class="menu-item" data-cat="asturiana"><div class="menu-item-info"><h4>Fabada Asturiana</h4><p>Receta tradicional con fabes, chorizo, morcilla y lacón</p><div class="menu-item-tags"><span class="menu-tag gf">Sin gluten</span></div></div><div class="menu-item-price">16€</div></div>
+                <div class="menu-item" data-cat="asturiana"><div class="menu-item-info"><h4>Cachopo Bacon &amp; Carbonara</h4><p>Bacon crujiente y salsa carbonara casera</p><div class="menu-item-tags"><span class="menu-tag gf">Sin gluten</span></div></div><div class="menu-item-price">33€</div></div>
+                <div class="menu-item" data-cat="asturiana"><div class="menu-item-info"><h4>Cachopo Cecina &amp; Queso de Cabra</h4><p>Cecina de León y queso de cabra fundido</p><div class="menu-item-tags"><span class="menu-tag gf">Sin gluten</span></div></div><div class="menu-item-price">33€</div></div>
+                <div class="menu-item" data-cat="alemana"><div class="menu-item-info"><h4>Currywurst</h4><p>Salchicha con salsa curry y patatas fritas</p></div><div class="menu-item-price">12€</div></div>
+                <div class="menu-item" data-cat="alemana"><div class="menu-item-info"><h4>Codillo Asado</h4><p>Horneado lentamente con puré y chucrut</p></div><div class="menu-item-price">18€</div></div>
+                <div class="menu-item" data-cat="alemana"><div class="menu-item-info"><h4>Salchichas Núremberg</h4><p>Seis salchichas con chucrut y mostaza</p></div><div class="menu-item-price">14€</div></div>
+                <div class="menu-item" data-cat="alemana"><div class="menu-item-info"><h4>Kartoffelsalat</h4><p>Ensalada de patatas alemana</p><div class="menu-item-tags"><span class="menu-tag veg">Vegetariano</span></div></div><div class="menu-item-price">8€</div></div>
+                <div class="menu-item" data-cat="mediterranea"><div class="menu-item-info"><h4>Salmorejo de Tomate</h4><p>Con huevo duro y jamón ibérico</p><div class="menu-item-tags"><span class="menu-tag gf">Sin gluten</span></div></div><div class="menu-item-price">10€</div></div>
+                <div class="menu-item" data-cat="mediterranea"><div class="menu-item-info"><h4>Libritos de Calabacín</h4><p>Con queso fundido y jamón</p><div class="menu-item-tags"><span class="menu-tag veg">Vegetariano</span></div></div><div class="menu-item-price">12€</div></div>
+                <div class="menu-item" data-cat="mediterranea"><div class="menu-item-info"><h4>Bacalao a la Riojana</h4><p>Con pimientos asados y patatas panaderas</p><div class="menu-item-tags"><span class="menu-tag gf">Sin gluten</span></div></div><div class="menu-item-price">18€</div></div>
+                <div class="menu-item" data-cat="mediterranea"><div class="menu-item-info"><h4>Jamón con Papas y Mojo Verde</h4><p>Canarias en Logroño, papas arrugás con mojo</p><div class="menu-item-tags"><span class="menu-tag gf">Sin gluten</span></div></div><div class="menu-item-price">15€</div></div>
+                <div class="menu-item" data-cat="postres"><div class="menu-item-info"><h4>Flan de Bailey's</h4><p>Nuestro postre estrella, suavidad con toque irlandés</p></div><div class="menu-item-price">7€</div></div>
+                <div class="menu-item" data-cat="postres"><div class="menu-item-info"><h4>Tarta de Queso</h4><p>Estilo baked, con mermelada de frutos rojos</p><div class="menu-item-tags"><span class="menu-tag gf">Sin gluten</span></div></div><div class="menu-item-price">8€</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cloud divider: menu → gallery -->
+    <div class="cloud-divider"><svg viewBox="0 0 1440 90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,42 C90,80 180,8 320,48 C430,82 540,12 680,45 C780,78 880,10 1020,42 C1120,72 1220,12 1340,48 C1400,65 1440,35 1440,42 L1440,90 L0,90 Z" fill="#FBF0E0"/></svg></div>
+
+    <!-- ========== GALLERY ========== -->
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <div class="section-header">
+                <div class="label"><svg class="cloud-icon" viewBox="0 0 40 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:18px;height:12px;"><path d="M8,20 C4.5,20 2,17.5 2,14.5 C2,11.8 4,9.6 6.5,9.2 C6.8,6.2 9.4,4 12.5,4 C14.8,4 16.8,5.2 17.8,7 C18.5,6.4 19.5,6 20.5,6 C22.8,6 24.7,7.8 24.8,10.2 C27.2,10.6 29,12.6 29,15 C29,17.8 26.8,20 24,20 Z" fill="currentColor" opacity="0.5"/></svg> Nuestro Espacio</div>
+                <h2>Galería</h2>
+                <p>Descubre el ambiente de En Las Nubes</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item" data-label="Cachopo Tradicional"><img src="fotos/CACHOPO.jpg" alt="Cachopo tradicional asturiano" loading="lazy"></div>
+                <div class="gallery-item" data-label="Entrada"><img src="fotos/ENTRADA DEL RESTOBAR.jpg" alt="Entrada del restobar" loading="lazy"></div>
+                <div class="gallery-item" data-label="Cachopo Especial"><img src="fotos/CACHOPO ESPECIAL.jpg" alt="Cachopo especial" loading="lazy"></div>
+                <div class="gallery-item" data-label="Tempura"><img src="fotos/TEMPURA.jpg" alt="Tempura En Las Nubes" loading="lazy"></div>
+                <div class="gallery-item" data-label="Comedor"><img src="fotos/COMEDOR EN LAS NUBES.jpg" alt="Salón principal" loading="lazy"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cloud divider: gallery → reviews -->
+    <div class="cloud-divider"><svg viewBox="0 0 1440 90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,38 C160,82 320,8 500,45 C650,78 800,12 960,42 C1080,68 1200,8 1320,40 C1400,60 1440,30 1440,38 L1440,90 L0,90 Z" fill="#2C1810"/></svg></div>
+
+    <!-- ========== REVIEWS ========== -->
+    <section class="reviews" id="reviews">
+        <div class="container">
+            <div class="section-header">
+                <div class="label"><svg class="cloud-icon" viewBox="0 0 40 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:18px;height:12px;"><path d="M8,20 C4.5,20 2,17.5 2,14.5 C2,11.8 4,9.6 6.5,9.2 C6.8,6.2 9.4,4 12.5,4 C14.8,4 16.8,5.2 17.8,7 C18.5,6.4 19.5,6 20.5,6 C22.8,6 24.7,7.8 24.8,10.2 C27.2,10.6 29,12.6 29,15 C29,17.8 26.8,20 24,20 Z" fill="currentColor" opacity="0.5"/></svg> Lo que dicen de nosotros</div>
+                <h2>Opiniones</h2>
+                <p>Miles de clientes satisfechos nos avalan</p>
+            </div>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="review-text">"El cachopo de cecina y queso de cabra es una pasada. La carne es súper suave y se corta con nada, además el empanado es crujiente a más no poder. El flan de Bailey's es simplemente una delicia."</p>
+                    <div class="review-author"><div class="review-avatar">M</div><div class="review-author-info"><h4>María G.</h4><span>Google Reviews</span></div></div>
+                </div>
+                <div class="review-card">
+                    <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="review-text">"Un sitio tranquilo, agradable y bonito donde disfrutar de una buena comilona con amigos. Tienen cachopos incluso sin gluten. El servicio es de lujo, con gente muy amable y atenta."</p>
+                    <div class="review-author"><div class="review-avatar">C</div><div class="review-author-info"><h4>Carlos R.</h4><span>Google Reviews</span></div></div>
+                </div>
+                <div class="review-card">
+                    <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+                    <p class="review-text">"Ambiente genial con terraza perfecta. Las raciones son generosas y el personal es un encanto. Buena cena por 20-30€ por persona. Recomiendo hacer reserva."</p>
+                    <div class="review-author"><div class="review-avatar">A</div><div class="review-author-info"><h4>Ana L.</h4><span>TripAdvisor</span></div></div>
+                </div>
+            </div>
+            <div class="reviews-stats">
+                <div class="stat"><div class="stat-number">8.6</div><div class="stat-label">Google (1.585)</div></div>
+                <div class="stat"><div class="stat-number">4.7</div><div class="stat-label">Uber Eats (270+)</div></div>
+                <div class="stat"><div class="stat-number">20-30€</div><div class="stat-label">Precio medio</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cloud divider: reviews → contact -->
+    <div class="cloud-divider"><svg viewBox="0 0 1440 90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,48 C180,10 360,82 540,42 C720,5 900,80 1080,45 C1200,15 1340,65 1440,40 L1440,90 L0,90 Z" fill="#FBF0E0"/></svg></div>
+
+    <!-- ========== CONTACT ========== -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <div class="label"><svg class="cloud-icon" viewBox="0 0 40 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:18px;height:12px;"><path d="M8,20 C4.5,20 2,17.5 2,14.5 C2,11.8 4,9.6 6.5,9.2 C6.8,6.2 9.4,4 12.5,4 C14.8,4 16.8,5.2 17.8,7 C18.5,6.4 19.5,6 20.5,6 C22.8,6 24.7,7.8 24.8,10.2 C27.2,10.6 29,12.6 29,15 C29,17.8 26.8,20 24,20 Z" fill="currentColor" opacity="0.5"/></svg> Ven a visitarnos</div>
+                <h2>Contacto</h2>
+                <p>Estamos en el corazón de Logroño</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Encuéntranos</h3>
+                    <div class="contact-details">
+                        <div class="contact-item"><div class="contact-item-icon"><i class="fas fa-map-marker-alt"></i></div><div class="contact-item-text"><h4>Dirección</h4><p>C/ María Teresa Gil de Gárate, 16, Bajo<br>26002 Logroño, La Rioja</p></div></div>
+                        <div class="contact-item"><div class="contact-item-icon"><i class="fas fa-phone"></i></div><div class="contact-item-text"><h4>Teléfono</h4><a href="tel:+34941578451">+34 941 57 84 51</a></div></div>
+                        <div class="contact-item"><div class="contact-item-icon"><i class="fas fa-clock"></i></div><div class="contact-item-text"><h4>Horario</h4><p>Ver tabla abajo</p></div></div>
+                    </div>
+                    <div class="schedule">
+                        <h4><i class="fas fa-calendar-alt"></i> Horario Semanal</h4>
+                        <div class="schedule-table">
+                            <div class="schedule-row"><span class="day">Lunes</span><span class="hours closed">Cerrado</span></div>
+                            <div class="schedule-row"><span class="day">Martes</span><span class="hours">13:00 – 17:00</span></div>
+                            <div class="schedule-row"><span class="day">Miércoles</span><span class="hours">13:00 – 17:00</span></div>
+                            <div class="schedule-row"><span class="day">Jueves</span><span class="hours">13:00 – 17:00</span></div>
+                            <div class="schedule-row"><span class="day">Viernes</span><span class="hours">13:00 – 17:00 · 20:00 – 00:30</span></div>
+                            <div class="schedule-row"><span class="day">Sábado</span><span class="hours">13:00 – 17:30 · 20:00 – 01:00</span></div>
+                            <div class="schedule-row"><span class="day">Domingo</span><span class="hours">13:00 – 17:00</span></div>
+                        </div>
+                        <div class="schedule-note"><i class="fas fa-info-circle"></i> Los viernes noche, sábados y domingos al mediodía disponemos de dos turnos por servicio debido a la alta demanda. Consulta disponibilidad llamando al restaurante.</div>
+                    </div>
+                    <div class="contact-social">
+                        <a href="https://www.instagram.com/enlasnubes_restobar/" target="_blank" class="social-link instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/enlasNubesRestobar" target="_blank" class="social-link facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.tripadvisor.es/Restaurant_Review-g187513-d8531456-Reviews-En_las_Nubes_Restobar-Logrono_La_Rioja.html" target="_blank" class="social-link tripadvisor" aria-label="TripAdvisor"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12.006 21.99c-3.226 0-6.108-1.564-7.91-4.086l1.947-1.321a6.417 6.417 0 0 0 5.963 3.34 6.417 6.417 0 0 0 5.963-3.34l1.947 1.32c-1.802 2.523-4.684 4.087-7.91 4.087zm8.47-8.404c-.236-.834-.574-1.63-1.012-2.37a10.05 10.05 0 0 0-3.905-3.68 10.05 10.05 0 0 0-5.11-1.398 10.05 10.05 0 0 0-5.11 1.398 10.05 10.05 0 0 0-3.904 3.68 9.92 9.92 0 0 0-1.012 2.37H2.676c.268-.952.66-1.86 1.164-2.71a11.44 11.44 0 0 1 4.448-4.195A11.44 11.44 0 0 1 12.45 5.398a11.44 11.44 0 0 1 4.162 1.283 11.44 11.44 0 0 1 4.448 4.196c.504.85.896 1.757 1.164 2.709zM12 18a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm0-6a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/></svg></a>
+                        <a href="https://www.ubereats.com/es/store/en-las-nubes-restobar/wep1Cog2SfSkmRSK2rJrzg" target="_blank" class="social-link ubereats" aria-label="Uber Eats"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 2.68 1.07 5.11 2.82 6.91l-.88 3.42c-.1.38.32.68.65.47l3.55-2.15a9.87 9.87 0 0 0 3.77.74c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm1.13 12.65c-.36.36-.85.55-1.36.55s-1-.19-1.36-.55l-3.18-3.18a.5.5 0 0 1 .71-.71l3.18 3.18a.6.6 0 0 0 .85 0l3.18-3.18a.5.5 0 0 1 .71.71l-3.18 3.18h-.05z"/><path d="M16.5 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg></a>
+                    </div>
+                </div>
+                <div class="contact-map"><iframe src="https://maps.google.com/maps?q=En+Las+Nubes+Restobar,+C%2F+Mar%C3%ADa+Teresa+Gil+de+G%C3%A1rate+16,+26002+Logro%C3%B1o,+La+Rioja&t=&z=17&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Ubicación En Las Nubes Restobar"></iframe></div>
+            </div>
+
+            <!-- FORMULARIO DE RESERVA -->
+            <div style="margin-top:40px;max-width:600px;margin-left:auto;margin-right:auto;">
+                <h3 style="font-family:'Cormorant Garamond',Georgia,serif;font-size:1.5rem;color:#2C1810;margin-bottom:16px;text-align:center;">Reservar Mesa</h3>
+                <form id="reservation-form" onsubmit="return handleReservation(event)" style="display:grid;gap:12px;">
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+                        <input type="text" required placeholder="Nombre *" style="padding:10px 14px;border:1px solid rgba(44,24,16,0.1);border-radius:10px;font-family:Inter,sans-serif;font-size:13px;background:rgba(255,255,255,0.6);color:#2C1810;outline:none;">
+                        <input type="tel" required placeholder="Teléfono *" style="padding:10px 14px;border:1px solid rgba(44,24,16,0.1);border-radius:10px;font-family:Inter,sans-serif;font-size:13px;background:rgba(255,255,255,0.6);color:#2C1810;outline:none;">
+                    </div>
+                    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;">
+                        <input type="date" required style="padding:10px 14px;border:1px solid rgba(44,24,16,0.1);border-radius:10px;font-family:Inter,sans-serif;font-size:13px;background:rgba(255,255,255,0.6);color:#2C1810;outline:none;">
+                        <select required style="padding:10px 14px;border:1px solid rgba(44,24,16,0.1);border-radius:10px;font-family:Inter,sans-serif;font-size:13px;background:rgba(255,255,255,0.6);color:#2C1810;outline:none;">
+                            <option value="">Hora</option>
+                            <option>13:00</option><option>13:30</option><option>14:00</option><option>14:30</option><option>15:00</option>
+                            <option>20:00</option><option>20:30</option><option>21:00</option><option>21:30</option><option>22:00</option>
+                        </select>
+                        <select required style="padding:10px 14px;border:1px solid rgba(44,24,16,0.1);border-radius:10px;font-family:Inter,sans-serif;font-size:13px;background:rgba(255,255,255,0.6);color:#2C1810;outline:none;">
+                            <option value="">Personas</option>
+                            <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>10+</option>
+                        </select>
+                    </div>
+                    <textarea rows="2" placeholder="Comentarios (alergias, preferencias...)" style="padding:10px 14px;border:1px solid rgba(44,24,16,0.1);border-radius:10px;font-family:Inter,sans-serif;font-size:13px;background:rgba(255,255,255,0.6);color:#2C1810;outline:none;resize:none;"></textarea>
+                    <button type="submit" style="background:linear-gradient(135deg,#C86B42,#A85A3A);color:#FEFCF9;border:none;padding:12px;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;font-family:Inter,sans-serif;">Enviar Solicitud de Reserva</button>
+                    <p style="text-align:center;font-size:11px;color:#8B7355;font-family:Inter,sans-serif;margin:4px 0 0;">O llama al <a href="tel:+34941578451" style="color:#C86B42;text-decoration:underline;">941 57 84 51</a></p>
+                </form>
+                <div id="reservation-success" style="display:none;text-align:center;padding:30px 0;">
+                    <span style="font-size:2rem;">✅</span>
+                    <p style="font-family:'Cormorant Garamond',Georgia,serif;font-size:1.1rem;color:#2C1810;font-weight:600;margin-top:8px;">Solicitud enviada</p>
+                    <p style="font-size:12px;color:#8B7355;font-family:Inter,sans-serif;margin-top:4px;">Nos pondremos en contacto contigo para confirmar.</p>
+                </div>
+            </div>
+            <script>
+            function handleReservation(e){
+                e.preventDefault();
+                document.getElementById('reservation-form').style.display='none';
+                document.getElementById('reservation-success').style.display='block';
+                setTimeout(function(){
+                    document.getElementById('reservation-form').style.display='grid';
+                    document.getElementById('reservation-success').style.display='none';
+                    document.getElementById('reservation-form').reset();
+                },5000);
+                return false;
+            }
+            </script>
+        </div>
+    </section>
+
+    <!-- Cloud divider: contact → footer -->
+    <div class="cloud-divider"><svg viewBox="0 0 1440 90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,35 C200,75 400,8 600,45 C800,82 1000,12 1200,42 C1320,60 1400,20 1440,40 L1440,90 L0,90 Z" fill="#2C1810"/></svg></div>
+
+    <!-- ========== FOOTER ========== -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>
+                        <svg class="cloud-icon" viewBox="0 0 40 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:24px;height:16px;"><path d="M8,20 C4.5,20 2,17.5 2,14.5 C2,11.8 4,9.6 6.5,9.2 C6.8,6.2 9.4,4 12.5,4 C14.8,4 16.8,5.2 17.8,7 C18.5,6.4 19.5,6 20.5,6 C22.8,6 24.7,7.8 24.8,10.2 C27.2,10.6 29,12.6 29,15 C29,17.8 26.8,20 24,20 Z" fill="#E8C36A" opacity="0.5"/></svg>
+                        En Las <span>Nubes</span>
+                    </h3>
+                    <p>Cocina fusión en pleno centro de Logroño. Asturiana, alemana y mediterránea en un ambiente único. Especialistas en cachopos.</p>
+                    <div class="contact-social" style="margin-top: 16px;">
+                        <a href="https://www.instagram.com/enlasnubes_restobar/" target="_blank" class="social-link" style="background: rgba(255,255,255,0.08); color: rgba(255,245,230,0.6);" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/enlasNubesRestobar" target="_blank" class="social-link" style="background: rgba(255,255,255,0.08); color: rgba(255,245,230,0.6);" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.tripadvisor.es/Restaurant_Review-g187513-d8531456-Reviews-En_las_Nubes_Restobar-Logrono_La_Rioja.html" target="_blank" class="social-link" style="background: rgba(255,255,255,0.08); color: rgba(255,245,230,0.6);" aria-label="TripAdvisor"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12.006 21.99c-3.226 0-6.108-1.564-7.91-4.086l1.947-1.321a6.417 6.417 0 0 0 5.963 3.34 6.417 6.417 0 0 0 5.963-3.34l1.947 1.32c-1.802 2.523-4.684 4.087-7.91 4.087zm8.47-8.404c-.236-.834-.574-1.63-1.012-2.37a10.05 10.05 0 0 0-3.905-3.68 10.05 10.05 0 0 0-5.11-1.398 10.05 10.05 0 0 0-5.11 1.398 10.05 10.05 0 0 0-3.904 3.68 9.92 9.92 0 0 0-1.012 2.37H2.676c.268-.952.66-1.86 1.164-2.71a11.44 11.44 0 0 1 4.448-4.195A11.44 11.44 0 0 1 12.45 5.398a11.44 11.44 0 0 1 4.162 1.283 11.44 11.44 0 0 1 4.448 4.196c.504.85.896 1.757 1.164 2.709zM12 18a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm0-6a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/></svg></a>
+                        <a href="https://www.ubereats.com/es/store/en-las-nubes-restobar/wep1Cog2SfSkmRSK2rJrzg" target="_blank" class="social-link" style="background: rgba(255,255,255,0.08); color: rgba(255,245,230,0.6);" aria-label="Uber Eats"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 2.68 1.07 5.11 2.82 6.91l-.88 3.42c-.1.38.32.68.65.47l3.55-2.15a9.87 9.87 0 0 0 3.77.74c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm1.13 12.65c-.36.36-.85.55-1.36.55s-1-.19-1.36-.55l-3.18-3.18a.5.5 0 0 1 .71-.71l3.18 3.18a.6.6 0 0 0 .85 0l3.18-3.18a.5.5 0 0 1 .71.71l-3.18 3.18h-.05z"/><path d="M16.5 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Navegación</h4>
+                    <ul>
+                        <li><a href="#about">Nosotros</a></li>
+                        <li><a href="#specialties">Especialidades</a></li>
+                        <li><a href="#menu">Carta</a></li>
+                        <li><a href="#gallery">Galería</a></li>
+                        <li><a href="#reviews">Opiniones</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contacto</h4>
+                    <ul>
+                        <li><a href="tel:+34941578451">+34 941 57 84 51</a></li>
+                        <li><a href="https://www.instagram.com/enlasnubes_restobar/" target="_blank">Instagram</a></li>
+                        <li><a href="https://www.facebook.com/enlasNubesRestobar" target="_blank">Facebook</a></li>
+                        <li><a href="https://www.tripadvisor.es/Restaurant_Review-g187513-d8531456-Reviews-En_las_Nubes_Restobar-Logrono_La_Rioja.html" target="_blank">TripAdvisor</a></li>
+                        <li><a href="https://www.ubereats.com/es/store/en-las-nubes-restobar/wep1Cog2SfSkmRSK2rJrzg" target="_blank">Uber Eats</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="privacy-policy.html">Política de Privacidad</a></li>
+                        <li><a href="legal-notice.html">Aviso Legal</a></li>
+                        <li><a href="cookies-policy.html">Cookies</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2026 En Las Nubes Restobar. Todos los derechos reservados.</span>
+                <span>Hecho con <i class="fas fa-heart" style="color: var(--sunset);"></i> en Logroño</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========== JAVASCRIPT ========== -->
+    <script>
+        // Particles removed
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 80) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const navToggle = document.getElementById('navToggle');
+        const navLinks = document.getElementById('navLinks');
+        navToggle.addEventListener('click', () => {
+            navToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Menu category filter
+        const catBtns = document.querySelectorAll('.menu-cat-btn');
+        const menuItems = document.querySelectorAll('.menu-item');
+        catBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                catBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const cat = btn.dataset.cat;
+                menuItems.forEach(item => {
+                    if (cat === 'todos' || item.dataset.cat === cat) {
+                        item.style.display = 'flex';
+                        item.style.animation = 'fadeIn 0.4s ease';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offset = 80;
+                    const elementPosition = target.getBoundingClientRect().top + window.pageYOffset;
+                    window.scrollTo({ top: elementPosition - offset, behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('.specialty-card, .review-card, .menu-item, .about-feature').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Add fadeIn keyframe
+        const style = document.createElement('style');
+        style.textContent = '@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }';
+        document.head.appendChild(style);
+    </script>
+
+    <!-- ========== WORLEY+FBM WEBGL CLOUD SKY — Hero Background ========== -->
+    <script>
+/* ═══════════════════════════════════════════════════════════════
+ CLOUD HERO — Worley + FBM Noise Texture · WebGL
+
+ Worley noise = masas redondeadas de nube (forma de cúmulo real)
+ FBM = detalle rugoso en bordes (textura algodonosa)
+ Blend 60/40 = nubes con forma real + bordes detallados
+ ═══════════════════════════════════════════════════════════════ */
+
+/* ─── 1. GENERACIÓN DE TEXTURA WORLEY + FBM en JavaScript ─── */
+function genCloudTex(sz) {
+ let seed = 98765;
+ function rng() {
+ seed = Math.imul(seed ^ seed >>> 13, seed | 1);
+ seed ^= seed >>> 7;
+ return (seed >>> 0) / 0xFFFFFFFF;
+ }
+
+ /* Puntos de Worley — múltiples a distintas escalas */
+ function makePoints(n, scale) {
+ return Array.from({length: n}, () => [rng() * sz * scale, rng() * sz * scale]);
+ }
+ const pts1 = makePoints(10, 1); // escala base — nubes grandes
+ const pts2 = makePoints(22, 1); // escala media — puffs secundarios
+
+ /* Worley tileable: distancia mínima al punto más cercano */
+ function worley(x, y, pts, radius) {
+ let d1 = 1e9;
+ for (const [px, py] of pts) {
+ for (let dy = -1; dy <= 1; dy++) for (let dx = -1; dx <= 1; dx++) {
+ const wx = px + dx * sz, wy = py + dy * sz;
+ const d = Math.sqrt((x-wx)*(x-wx) + (y-wy)*(y-wy));
+ if (d < d1) d1 = d;
+ }
+ }
+ /* Invertido y suavizado: 1 = centro del puff (nube densa) */
+ const norm = Math.max(0, 1 - d1 / radius);
+ return norm * norm; /* cuadrado = perfil más redondo/nítido */
+ }
+
+ /* Value noise + FBM para detalle de bordes */
+ function hash(ix, iy) {
+ let n = Math.imul(ix * 374761393 + iy * 668265263, 1013904223);
+ n ^= n >>> 13; n = Math.imul(n, 1664525) + 1013904223;
+ return ((n ^ n >>> 14) >>> 0) / 0xFFFFFFFF;
+ }
+ function vn(x, y) {
+ const ix = Math.floor(x), iy = Math.floor(y);
+ let fx = x-ix, fy = y-iy;
+ fx = fx*fx*(3-2*fx); fy = fy*fy*(3-2*fy);
+ const a=hash(ix,iy), b=hash(ix+1,iy), c=hash(ix,iy+1), d=hash(ix+1,iy+1);
+ return a+(b-a)*fx+(c-a)*fy+(a-b-c+d)*fx*fy;
+ }
+ function fbm(x, y) {
+ let v=0, amp=0.5, ox=x, oy=y;
+ for (let i=0; i<5; i++) {
+ v += vn(ox, oy) * amp;
+ const nx = (ox-oy)*1.414*1.002 + 3.71;
+ const ny = (ox+oy)*1.414*1.002 + 1.93;
+ ox = nx*2.01; oy = ny*2.01; amp *= 0.5;
+ }
+ return v;
+ }
+
+ /* Generar y normalizar */
+ const raw = new Float32Array(sz * sz);
+ let mn = 1e9, mx = -1e9;
+ const r1 = sz * 0.34; /* radio Worley grande */
+ const r2 = sz * 0.16; /* radio Worley pequeño */
+
+ for (let y = 0; y < sz; y++) {
+ for (let x = 0; x < sz; x++) {
+ const w1 = worley(x, y, pts1, r1);
+ const w2 = worley(x, y, pts2, r2) * 0.5;
+ const f = fbm(x/sz*5, y/sz*5);
+ /* Blend: Worley domina la forma, FBM añade detalle algodonoso */
+ const v = w1*0.52 + w2*0.18 + f*0.30;
+ raw[y*sz+x] = v;
+ if (v < mn) mn = v; if (v > mx) mx = v;
+ }
+ }
+
+ const data = new Uint8Array(sz * sz);
+ const range = mx - mn;
+ for (let i = 0; i < sz*sz; i++)
+ data[i] = Math.round(Math.max(0, Math.min(1, (raw[i]-mn)/range)) * 255);
+ return data;
+}
+
+/* ─── 2. WEBGL ─── */
+const cv = document.getElementById('sky-canvas');
+const hero = document.getElementById('hero');
+const gl = cv.getContext('webgl') || cv.getContext('experimental-webgl');
+
+if (!gl) {
+ hero.style.background = 'linear-gradient(160deg,#0d2055,#2a5fa8,#a0c8f0)';
+} else {
+
+const VS = `attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}`;
+const FS = `precision mediump float;
+uniform float T;
+uniform vec2 R;
+uniform vec2 M;
+uniform sampler2D N; /* textura Worley+FBM */
+
+/* FBM sobre textura normalizada — 4 octavas (Worley ya tiene estructura propia) */
+float fbmT(vec2 uv){
+ float v=0.,a=.5;
+ for(int i=0;i<4;i++){
+ v+=texture2D(N,uv).r*a;
+ uv=uv*2.01+vec2(.37,.71);
+ a*=.5;
+ }
+ return v;
+}
+
+/* Densidad de nube con deriva + warp pequeño */
+float density(vec2 uv, float spd){
+ vec2 d=uv+vec2(T*spd,0.);
+ float wx=texture2D(N,d*.35+vec2(.13,.07)).r-.5;
+ float wy=texture2D(N,d*.35+vec2(.63,.51)).r-.5;
+ return fbmT(d+vec2(wx,wy)*.20);
+}
+
+/* Cielo: azul marino oscuro arriba, celeste en horizonte */
+vec3 sky(float y){
+ vec3 top=vec3(.04,.13,.46);
+ vec3 mid=vec3(.16,.42,.80);
+ vec3 hor=vec3(.52,.74,.95);
+ return mix(hor,mix(mid,top,smoothstep(0.,.58,y)),smoothstep(0.,.16,y));
+}
+
+/* Sol */
+vec3 addSun(vec3 c,vec2 uv){
+ vec2 sp=vec2(.78,.87);float d=length(uv-sp);
+ c+=vec3(1.,.97,.84)*(1.-smoothstep(.019,.024,d));
+ c+=vec3(1.,.90,.68)*exp(-d*8.)*.55;
+ c+=vec3(1.,.86,.60)*exp(-d*3.8)*.18;
+ return c;
+}
+
+/* Capa de nube con iluminación volumétrica 2D */
+vec3 cloudLayer(vec3 col, vec2 uv,
+ float xs, float ys, float yoff, float spd,
+ float bandLo, float bandHi, float str) {
+
+ vec2 p = vec2(uv.x*xs, (uv.y-yoff)*ys);
+ float dens = density(p, spd);
+
+ float c = smoothstep(.48,.60, dens);
+
+ /* BASE PLANA: corte horizontal rápido */
+ float flatBase = smoothstep(bandLo, bandLo+.035, uv.y);
+ c *= flatBase;
+
+ /* Máscara superior suave */
+ c *= smoothstep(bandHi, bandHi-.06, uv.y);
+
+ if(c < .005) return col;
+
+ /* ILUMINACIÓN VOLUMÉTRICA */
+ float relY = clamp((uv.y - bandLo) / (bandHi - bandLo), 0., 1.);
+ float topLight = smoothstep(0., .5, relY) * .35 + .65;
+ float baseDark = (1. - smoothstep(0., .18, relY)) * .28;
+
+ float interior = smoothstep(.50, .75, dens) * .22;
+
+ vec3 cShadow = vec3(.62,.70,.88);
+ vec3 cBright = vec3(1.,1.,.98);
+
+ float litFactor = topLight + interior - baseDark;
+ vec3 cc = mix(cShadow, cBright, clamp(litFactor,.0,1.));
+
+ cc = mix(cc, vec3(1.,1.,1.), pow(c,.40)*.12);
+
+ return mix(col, cc, c * str);
+}
+
+void main(){
+ vec2 uv = gl_FragCoord.xy/R + M*.012;
+
+ vec3 col = sky(uv.y);
+ col = addSun(col, uv);
+
+ /* ESTRATOS — nubes más grandes: xs/ys reducidos */
+
+ /* Capa alta: cirrocúmulos lejanos, pequeños */
+ col = cloudLayer(col,uv, 1.1,1.8,.62, .005, .63,.93, .60);
+
+ /* Capa media: cúmulos protagonistas */
+ col = cloudLayer(col,uv, 0.75,1.1,.34, .009, .36,.70, .90);
+
+ /* Capa frontal: grandes cúmulos cercanos */
+ col = cloudLayer(col,uv, 0.55,0.85,.11, .014, .16,.46, .98);
+
+ /* Bruma horizonte */
+ col = mix(col, vec3(.58,.78,.96), smoothstep(.20,0.,uv.y)*.28);
+
+ /* Tone mapping Reinhard suave + gamma 2.2 */
+ col = col/(col+vec3(.72));
+ col = pow(clamp(col,0.,1.),vec3(.4545));
+ gl_FragColor = vec4(col,1.);
+}`;
+
+/* Compilar shaders */
+function mkS(t,s){
+ const sh=gl.createShader(t);gl.shaderSource(sh,s);gl.compileShader(sh);
+ if(!gl.getShaderParameter(sh,gl.COMPILE_STATUS)){
+ console.error(gl.getShaderInfoLog(sh));return null;
+ }
+ return sh;
+}
+const prog=gl.createProgram();
+gl.attachShader(prog,mkS(gl.VERTEX_SHADER,VS));
+gl.attachShader(prog,mkS(gl.FRAGMENT_SHADER,FS));
+gl.linkProgram(prog);
+if(!gl.getProgramParameter(prog,gl.LINK_STATUS)){
+ console.error(gl.getProgramInfoLog(prog));
+}
+gl.useProgram(prog);
+
+/* Quad */
+const buf=gl.createBuffer();
+gl.bindBuffer(gl.ARRAY_BUFFER,buf);
+gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);
+const ap=gl.getAttribLocation(prog,'p');
+gl.enableVertexAttribArray(ap);gl.vertexAttribPointer(ap,2,gl.FLOAT,false,0,0);
+
+/* Generar textura Worley+FBM */
+const SZ = 256;
+const noiseData = genCloudTex(SZ);
+
+const tex=gl.createTexture();
+gl.activeTexture(gl.TEXTURE0);
+gl.bindTexture(gl.TEXTURE_2D,tex);
+gl.texImage2D(gl.TEXTURE_2D,0,gl.LUMINANCE,SZ,SZ,0,gl.LUMINANCE,gl.UNSIGNED_BYTE,noiseData);
+gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.REPEAT);
+gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.REPEAT);
+gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR_MIPMAP_LINEAR);
+gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);
+gl.generateMipmap(gl.TEXTURE_2D);
+
+const uT=gl.getUniformLocation(prog,'T');
+const uR=gl.getUniformLocation(prog,'R');
+const uM=gl.getUniformLocation(prog,'M');
+gl.uniform1i(gl.getUniformLocation(prog,'N'),0);
+
+function resize(){
+ cv.width=hero.clientWidth;cv.height=hero.clientHeight;
+ gl.viewport(0,0,cv.width,cv.height);
+ gl.uniform2f(uR,cv.width,cv.height);
+}
+resize();new ResizeObserver(resize).observe(hero);
+
+/* Fix altura Android — fuerza hero al viewport real */
+function fixVh(){
+ const vh=window.innerHeight;
+ hero.style.height=vh+'px';
+}
+fixVh();
+window.addEventListener('resize',fixVh);
+if('visualViewport' in window){
+ window.visualViewport.addEventListener('resize',fixVh);
+}
+
+let mx=0,my=0,sx=0,sy=0;
+document.addEventListener('mousemove',e=>{
+ mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5;
+});
+document.addEventListener('touchmove',e=>{
+ mx=e.touches[0].clientX/innerWidth-.5;
+ my=e.touches[0].clientY/innerHeight-.5;
+},{passive:true});
+
+function loop(ts){
+ requestAnimationFrame(loop);
+ sx+=(mx-sx)*.04;sy+=(my-sy)*.04;
+ gl.uniform1f(uT,ts*.001);
+ gl.uniform2f(uM,sx,-sy);
+ gl.drawArrays(gl.TRIANGLE_STRIP,0,4);
+}
+requestAnimationFrame(loop);
+}
+    </script>
+
+    <!-- ============================================ -->
+    <!-- NUEVAS FUNCIONALIDADES - Inyectadas -->
+    <!-- ============================================ -->
+
+    <!-- COOKIE BANNER RGPD -->
+    <div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9998;padding:16px;">
+      <div style="max-width:700px;margin:0 auto;background:rgba(15,15,26,0.95);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:20px 24px;box-shadow:0 -4px 30px rgba(0,0,0,0.3);">
+        <p style="color:rgba(251,240,224,0.7);font-family:Inter,sans-serif;font-size:13px;line-height:1.6;margin:0 0 12px 0;">
+          Utilizamos cookies técnicas para el funcionamiento del sitio. No usamos cookies de análisis ni publicidad.
+          <a href="cookies-policy.html" style="color:#D4A843;text-decoration:underline;">Más info</a>
+        </p>
+        <div style="display:flex;gap:10px;">
+          <button onclick="acceptCookies()" style="background:linear-gradient(135deg,#C86B42,#A85A3A);color:#FEFCF9;border:none;padding:8px 20px;border-radius:10px;font-size:12px;font-weight:600;cursor:pointer;font-family:Inter,sans-serif;">Aceptar</button>
+          <button onclick="rejectCookies()" style="background:transparent;color:rgba(251,240,224,0.5);border:1px solid rgba(251,240,224,0.15);padding:8px 20px;border-radius:10px;font-size:12px;font-weight:600;cursor:pointer;font-family:Inter,sans-serif;">Rechazar</button>
+        </div>
+      </div>
+    </div>
+    <style>
+      #cookie-banner.show { display: block !important; }
+    </style>
+    <script>
+    (function(){
+      if(!localStorage.getItem('cookies_accepted')){
+        setTimeout(function(){ document.getElementById('cookie-banner').classList.add('show'); },1500);
+      }
+    })();
+    function acceptCookies(){
+      localStorage.setItem('cookies_accepted','true');
+      document.cookie='cookies_accepted=true;path=/;max-age='+365*24*60*60+';SameSite=Lax';
+      document.getElementById('cookie-banner').style.display='none';
+    }
+    function rejectCookies(){
+      localStorage.setItem('cookies_accepted','rejected');
+      document.cookie='cookies_accepted=rejected;path=/;max-age='+365*24*60*60+';SameSite=Lax';
+      document.getElementById('cookie-banner').style.display='none';
+    }
+    </script>
+
+    <!-- MENU FILTRABLE -->
+    <script>
+    (function(){
+      var btns = document.querySelectorAll('.menu-cat-btn');
+      var items = document.querySelectorAll('.menu-grid .menu-item');
+      btns.forEach(function(btn){
+        btn.addEventListener('click', function(){
+          btns.forEach(function(b){ b.classList.remove('active'); });
+          btn.classList.add('active');
+          var cat = btn.getAttribute('data-cat');
+          items.forEach(function(item){
+            if(cat === 'todos' || item.getAttribute('data-cat') === cat){
+              item.style.display = '';
+            } else {
+              item.style.display = 'none';
+            }
+          });
+        });
+      });
+    })();
+    </script>
+
+    <!-- GALERIA LIGHTBOX -->
+    <div id="lightbox" style="display:none;position:fixed;inset:0;z-index:9997;background:rgba(0,0,0,0.92);backdrop-filter:blur(8px);cursor:pointer;" onclick="closeLightbox()">
+      <button onclick="event.stopPropagation();prevImg()" style="position:absolute;left:12px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.7);width:44px;height:44px;border-radius:50%;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;">&#8249;</button>
+      <button onclick="event.stopPropagation();nextImg()" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.7);width:44px;height:44px;border-radius:50%;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;">&#8250;</button>
+      <button onclick="event.stopPropagation();closeLightbox()" style="position:absolute;top:16px;right:16px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.7);width:40px;height:40px;border-radius:50%;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;">&#10005;</button>
+      <div style="display:flex;align-items:center;justify-content:center;height:100%;padding:60px 70px;" onclick="event.stopPropagation()">
+        <img id="lightbox-img" src="" alt="" style="max-width:100%;max-height:100%;object-fit:contain;border-radius:12px;">
+      </div>
+      <p id="lightbox-label" style="position:absolute;bottom:20px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,0.5);font-family:Inter,sans-serif;font-size:13px;"></p>
+    </div>
+    <script>
+    (function(){
+      var galleryItems = document.querySelectorAll('.gallery-item');
+      var images = [];
+      var labels = [];
+      galleryItems.forEach(function(item){
+        var img = item.querySelector('img');
+        images.push(img.src);
+        labels.push(item.getAttribute('data-label') || '');
+        item.style.cursor = 'pointer';
+        item.addEventListener('click', function(){
+          var idx = Array.from(galleryItems).indexOf(item);
+          openLightbox(idx);
+        });
+      });
+      window.galleryImages = images;
+      window.galleryLabels = labels;
+      window.galleryIndex = 0;
+    })();
+    function openLightbox(idx){
+      window.galleryIndex = idx;
+      document.getElementById('lightbox-img').src = window.galleryImages[idx];
+      document.getElementById('lightbox-label').textContent = window.galleryLabels[idx] + ' · ' + (idx+1) + '/' + window.galleryImages.length;
+      document.getElementById('lightbox').style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox(){
+      document.getElementById('lightbox').style.display = 'none';
+      document.body.style.overflow = '';
+    }
+    function nextImg(){
+      window.galleryIndex = (window.galleryIndex + 1) % window.galleryImages.length;
+      openLightbox(window.galleryIndex);
+    }
+    function prevImg(){
+      window.galleryIndex = (window.galleryIndex - 1 + window.galleryImages.length) % window.galleryImages.length;
+      openLightbox(window.galleryIndex);
+    }
+    document.addEventListener('keydown', function(e){
+      if(document.getElementById('lightbox').style.display === 'block'){
+        if(e.key === 'Escape') closeLightbox();
+        if(e.key === 'ArrowRight') nextImg();
+        if(e.key === 'ArrowLeft') prevImg();
+      }
+    });
+    </script>
+
+</html>
