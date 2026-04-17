@@ -4,88 +4,41 @@ export interface Review {
   name: string
   initials: string
   rating: number
-  platform: 'Google' | 'uberEats' | 'tripAdvisor'
+  platform: 'Google' | 'TripAdvisor' | 'Uber Eats'
 }
 
-export interface Stats {
-  rating: number
-  count: number
-  url: string
-}
-
+// Reseñas extraídas de la web actual (index.html)
 export const reviews: Review[] = [
   {
     id: 1,
-    text: "Los mejores cachopos de Logroño, sin duda. El ambiente es acogedor y el servicio excelente. Volveremos seguro.",
-    name: "Carlos M.",
-    initials: "CM",
+    text: 'El cachopo de cecina y queso de cabra es una pasada. La carne es súper suave y se corta con nada, además el empanado es crujiente a más no poder. El flan de Bailey\'s es simplemente una delicia.',
+    name: 'María G.',
+    initials: 'MG',
     rating: 5,
-    platform: "Google",
+    platform: 'Google',
   },
   {
     id: 2,
-    text: "Descubrimos este sitio por casualidad y fue una gran sorpresa. La fusión de cocinas es original y todo estaba riquísimo.",
-    name: "Laura G.",
-    initials: "LG",
+    text: 'Un sitio tranquilo, agradable y bonito donde disfrutar de una buena comilona con amigos. Tienen cachopos incluso sin gluten. El servicio es de lujo, con gente muy amable y atenta.',
+    name: 'Carlos R.',
+    initials: 'CR',
     rating: 5,
-    platform: "Google",
+    platform: 'Google',
   },
   {
     id: 3,
-    text: "Pedimos delivery por Uber Eats y llegó perfecto. El cachopo bacon carbonara es una locura. Muy recomendable.",
-    name: "Miguel R.",
-    initials: "MR",
+    text: 'Ambiente genial con terraza perfecta. Las raciones son generosas y el personal es un encanto. Buena cena por 20-30€ por persona. Recomiendo hacer reserva.',
+    name: 'Ana L.',
+    initials: 'AL',
     rating: 5,
-    platform: "uberEats",
-  },
-  {
-    id: 4,
-    text: "Buen sitio en el centro de Logroño. Las patatas bravas están muy buenas. El currywurst también es una apuesta segura.",
-    name: "Ana P.",
-    initials: "AP",
-    rating: 4,
-    platform: "Google",
-  },
-  {
-    id: 5,
-    text: "Nos atendieron fenomenal. El codillo estaba tierno y sabroso. Los postres caseros son el broche perfecto.",
-    name: "Javier S.",
-    initials: "JS",
-    rating: 5,
-    platform: "tripAdvisor",
-  },
-  {
-    id: 6,
-    text: "Sitio con encanto en pleno centro. Los platos son abundantes y de buena calidad. Relación calidad-precio muy buena.",
-    name: "María T.",
-    initials: "MT",
-    rating: 4,
-    platform: "Google",
+    platform: 'TripAdvisor',
   },
 ]
 
-export const stats: Stats = {
-  rating: 8.6,
-  count: 1585,
-  url: "https://www.google.com/maps/place/En+Las+Nubes+Restobar/",
+export const statsByPlatform: Record<string, { rating: number; count: number }> = {
+  google: { rating: 4.3, count: 1585 },
+  uberEats: { rating: 4.7, count: 270 },
+  tripAdvisor: { rating: 3.7, count: 171 },
 }
 
-export const statsByPlatform: Record<string, Stats> = {
-  google: {
-    rating: 4.3,
-    count: 1585,
-    url: "https://www.google.com/maps/place/En+Las+Nubes+Restobar/@42.4636,-2.4451,17z/",
-  },
-  uberEats: {
-    rating: 4.7,
-    count: 270,
-    url: "https://www.ubereats.com/es/store/en-las-nubes-restobar/wep1Cog2SfSkmRSK2rJrzg",
-  },
-  tripAdvisor: {
-    rating: 3.7,
-    count: 171,
-    url: "https://www.tripadvisor.es/Restaurant_Review-g187513-d8531456-Reviews-En_las_Nubes_Restobar-Logrono_La_Rioja.html",
-  },
-}
-
-export const priceRange = "18-25€"
+export const priceRange = '20-30€'

@@ -8,59 +8,43 @@ import { images } from '@/data/images'
 
 export default function Gallery() {
   const [selected, setSelected] = useState<number | null>(null)
+  const labels = ['Cachopo Tradicional', 'Entrada', 'Cachopo Especial', 'Tempura', 'Comedor']
 
-  const prev = () =>
-    setSelected((s) => (s !== null ? (s - 1 + images.gallery.length) % images.gallery.length : null))
-  const next = () =>
-    setSelected((s) => (s !== null ? (s + 1) % images.gallery.length : null))
+  const prev = () => setSelected(s => s !== null ? (s - 1 + images.gallery.length) % images.gallery.length : null)
+  const next = () => setSelected(s => s !== null ? (s + 1) % images.gallery.length : null)
 
   return (
-    <section id="galeria" className="section-dark relative overflow-hidden py-24 sm:py-32">
-      <div className="gradient-orb absolute top-0 right-0 w-[600px] h-[600px] bg-sun-warm/4" />
-      <div className="light-leak-left" />
-
+    <section id="gallery" className="relative overflow-hidden py-24 sm:py-32" style={{ background: 'linear-gradient(180deg, #0f0f1a 0%, #1a1a2e 100%)' }}>
       <div className="section-padding relative z-10">
         <AnimatedSection className="text-center mb-16">
-          <span className="text-xs uppercase tracking-[0.3em] text-gold/60 font-body font-semibold">
-            Nuestro espacio
-          </span>
+          <div className="label">
+            <svg viewBox="0 0 40 24" fill="none" style={{ width: '18px', height: '12px', display: 'inline-block', verticalAlign: 'middle', marginRight: '6px' }}>
+              <path d="M8,20 C4.5,20 2,17.5 2,14.5 C2,11.8 4,9.6 6.5,9.2 C6.8,6.2 9.4,4 12.5,4 C14.8,4 16.8,5.2 17.8,7 C18.5,6.4 19.5,6 20.5,6 C22.8,6 24.7,7.8 24.8,10.2 C27.2,10.6 29,12.6 29,15 C29,17.8 26.8,20 24,20 Z" fill="currentColor" opacity="0.5" />
+            </svg>
+            <span className="text-xs uppercase tracking-[0.3em] text-gold/60 font-body font-semibold">Nuestro Espacio</span>
+          </div>
           <h2 className="mt-4 font-display text-3xl sm:text-4xl md:text-5xl font-bold text-cream">
-            La <span className="gradient-text-gold">Galería</span>
+            Galería
           </h2>
-          <p className="mt-4 max-w-xl mx-auto text-cream/40 font-body text-base">
-            Descubre el ambiente de En Las Nubes
-          </p>
         </AnimatedSection>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
-          {images.gallery.map((img, i) => {
-            const isTall = i % 5 === 0
-            const isWide = i % 7 === 3
-
-            return (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-50px' }}
-                transition={{ duration: 0.6, delay: (i % 4) * 0.1 }}
-                onClick={() => setSelected(i)}
-                className={`gallery-item cursor-pointer ${isTall ? 'row-span-2' : ''} ${isWide ? 'col-span-2' : ''}`}
-              >
-                <div className={`relative ${isTall ? 'aspect-[3/4]' : isWide ? 'aspect-video' : 'aspect-square'}`}>
-                  <img
-                    src={img}
-                    alt={`En Las Nubes Restobar - Galería ${i + 1}`}
-                    className="object-cover w-full h-full"
-                    loading="lazy"
-                  />
-                  <div className="gallery-overlay">
-                    <span className="text-white/80 text-sm font-body">Ver foto</span>
-                  </div>
-                </div>
-              </motion.div>
-            )
-          })}
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 max-w-4xl mx-auto">
+          {images.gallery.map((img, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              onClick={() => setSelected(i)}
+              className="cursor-pointer rounded-xl overflow-hidden aspect-square relative group"
+            >
+              <img src={img} alt={labels[i]} className="object-cover w-full h-full" loading="lazy" />
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-center justify-center">
+                <span className="text-white text-sm font-body opacity-0 group-hover:opacity-100 transition-opacity">{labels[i]}</span>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
 
@@ -71,51 +55,23 @@ export default function Gallery() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[70] bg-black/90 backdrop-blur-sm flex items-center justify-center p-4"
+            className="fixed inset-0 z-[70] bg-black/90 flex items-center justify-center p-4"
             onClick={() => setSelected(null)}
           >
-            <button
-              onClick={(e) => { e.stopPropagation(); setSelected(null) }}
-              className="absolute top-4 right-4 sm:top-8 sm:right-8 p-3 rounded-full glass text-cream/70 hover:text-cream transition-colors z-10"
-              aria-label="Cerrar"
-            >
-              <X size={24} />
-            </button>
-            <button
-              onClick={(e) => { e.stopPropagation(); prev() }}
-              className="absolute left-2 sm:left-8 p-3 rounded-full glass text-cream/70 hover:text-cream transition-colors z-10"
-              aria-label="Anterior"
-            >
-              <ChevronLeft size={28} />
-            </button>
-            <button
-              onClick={(e) => { e.stopPropagation(); next() }}
-              className="absolute right-2 sm:right-8 p-3 rounded-full glass text-cream/70 hover:text-cream transition-colors z-10"
-              aria-label="Siguiente"
-            >
-              <ChevronRight size={28} />
-            </button>
-
+            <button onClick={e => { e.stopPropagation(); setSelected(null) }} className="absolute top-4 right-4 p-3 rounded-full glass text-cream/70 hover:text-cream z-10" aria-label="Cerrar"><X size={24} /></button>
+            <button onClick={e => { e.stopPropagation(); prev() }} className="absolute left-4 p-3 rounded-full glass text-cream/70 hover:text-cream z-10" aria-label="Anterior"><ChevronLeft size={28} /></button>
+            <button onClick={e => { e.stopPropagation(); next() }} className="absolute right-4 p-3 rounded-full glass text-cream/70 hover:text-cream z-10" aria-label="Siguiente"><ChevronRight size={28} /></button>
             <motion.div
               key={selected}
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.3 }}
-              className="relative max-w-5xl max-h-[85vh] w-full aspect-[4/3]"
-              onClick={(e) => e.stopPropagation()}
+              className="relative max-w-4xl max-h-[80vh]"
+              onClick={e => e.stopPropagation()}
             >
-              <img
-                src={images.gallery[selected]}
-                alt={`Foto ${selected + 1}`}
-                className="object-contain w-full h-full rounded-xl"
-              />
+              <img src={images.gallery[selected]} alt={labels[selected]} className="max-h-[80vh] rounded-xl object-contain" />
+              <p className="text-center text-cream/50 text-sm font-body mt-3">{labels[selected]} · {selected + 1}/{images.gallery.length}</p>
             </motion.div>
-
-            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-cream/40 text-sm font-body">
-              {selected + 1} / {images.gallery.length}
-            </div>
           </motion.div>
         )}
       </AnimatePresence>

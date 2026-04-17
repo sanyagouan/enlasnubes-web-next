@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import AnimatedSection from './AnimatedSection'
 
+// Horario real extraído de la web actual
 const schedule = [
   { day: 'Lunes', hours: 'Cerrado', closed: true },
   { day: 'Martes', hours: '13:00 – 17:00' },
@@ -20,6 +21,7 @@ const dayMap: Record<number, number> = { 0: 6, 1: 0, 2: 1, 3: 2, 4: 3, 5: 4, 6: 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', phone: '', email: '', date: '', time: '', guests: '', message: '' })
   const [sent, setSent] = useState(false)
+  const todayIndex = dayMap[today]
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -28,159 +30,109 @@ export default function Contact() {
     setTimeout(() => setSent(false), 5000)
   }
 
-  const todayIndex = dayMap[today]
-
   return (
-    <section id="contacto" className="section-cream relative py-24 sm:py-32">
-      <div className="section-padding relative z-10">
+    <section id="contact" className="section-cream relative py-24 sm:py-32">
+      <div className="section-padding">
         <AnimatedSection className="text-center mb-16">
-          <span className="text-xs uppercase tracking-[0.3em] text-terracotta/50 font-body font-semibold">
-            Estamos en el corazón de Logroño
-          </span>
-          <h2 className="mt-4 font-display text-3xl sm:text-4xl md:text-5xl font-bold text-brown-dark">
-            Ven a <span className="gradient-text-terracotta">Visitarnos</span>
-          </h2>
+          <div className="label">
+            <svg viewBox="0 0 40 24" fill="none" style={{ width: '18px', height: '12px', display: 'inline-block', verticalAlign: 'middle', marginRight: '6px' }}>
+              <path d="M8,20 C4.5,20 2,17.5 2,14.5 C2,11.8 4,9.6 6.5,9.2 C6.8,6.2 9.4,4 12.5,4 C14.8,4 16.8,5.2 17.8,7 C18.5,6.4 19.5,6 20.5,6 C22.8,6 24.7,7.8 24.8,10.2 C27.2,10.6 29,12.6 29,15 C29,17.8 26.8,20 24,20 Z" fill="currentColor" opacity="0.5" />
+            </svg>
+            <span className="text-xs uppercase tracking-[0.3em] text-terracotta/50 font-body font-semibold">Ven a visitarnos</span>
+          </div>
+          <h2 className="mt-4 font-display text-3xl sm:text-4xl md:text-5xl font-bold text-brown-dark">Contacto</h2>
+          <p className="mt-3 text-text-medium font-body">Estamos en el corazón de Logroño</p>
         </AnimatedSection>
 
-        <div className="grid lg:grid-cols-5 gap-12 lg:gap-16">
-          {/* Info + Schedule */}
-          <div className="lg:col-span-2 space-y-8">
-            <AnimatedSection direction="left">
-              <div className="space-y-4">
-                <a href="https://www.google.com/maps/dir/?api=1&destination=Calle+Maria+Teresa+Gil+de+Gárate+16+26002+Logroño" target="_blank" rel="noopener noreferrer" className="flex items-start gap-4 p-4 rounded-2xl bg-brown-dark/[0.02] border border-brown-dark/[0.04] hover:border-terracotta/15 transition-all group">
-                  <div className="w-10 h-10 rounded-xl bg-terracotta/10 flex items-center justify-center shrink-0"><i className="fas fa-map-marker-alt text-terracotta" /></div>
-                  <div>
-                    <p className="font-body font-semibold text-brown-dark text-sm">Dirección</p>
-                    <p className="text-sm text-text-light font-body mt-0.5">C/ María Teresa Gil de Gárate, 16, Bajo<br />26002 Logroño, La Rioja</p>
+        <div className="grid lg:grid-cols-2 gap-12">
+          {/* Info + Horario */}
+          <AnimatedSection direction="left">
+            <div className="space-y-8">
+              <div>
+                <h3 className="font-display text-lg font-semibold text-brown-dark mb-4">Encuéntranos</h3>
+                <div className="space-y-3">
+                  <div className="flex items-start gap-3">
+                    <div className="w-9 h-9 rounded-lg bg-terracotta/10 flex items-center justify-center shrink-0"><i className="fas fa-map-marker-alt text-terracotta text-sm" /></div>
+                    <div><h4 className="font-body font-semibold text-brown-dark text-sm">Dirección</h4><p className="text-sm text-text-light font-body">C/ María Teresa Gil de Gárate, 16, Bajo<br />26002 Logroño, La Rioja</p></div>
                   </div>
-                </a>
-                <a href="tel:+34941578451" className="flex items-start gap-4 p-4 rounded-2xl bg-brown-dark/[0.02] border border-brown-dark/[0.04] hover:border-terracotta/15 transition-all group">
-                  <div className="w-10 h-10 rounded-xl bg-terracotta/10 flex items-center justify-center shrink-0"><i className="fas fa-phone text-terracotta" /></div>
-                  <div>
-                    <p className="font-body font-semibold text-brown-dark text-sm">Teléfono</p>
-                    <p className="text-sm text-text-light font-body mt-0.5">+34 941 57 84 51</p>
+                  <div className="flex items-start gap-3">
+                    <div className="w-9 h-9 rounded-lg bg-terracotta/10 flex items-center justify-center shrink-0"><i className="fas fa-phone text-terracotta text-sm" /></div>
+                    <div><h4 className="font-body font-semibold text-brown-dark text-sm">Teléfono</h4><a href="tel:+34941578451" className="text-sm text-terracotta font-body hover:underline">+34 941 57 84 51</a></div>
                   </div>
-                </a>
-                <a href="mailto:info@enlasnubesrestobar.net" className="flex items-start gap-4 p-4 rounded-2xl bg-brown-dark/[0.02] border border-brown-dark/[0.04] hover:border-terracotta/15 transition-all group">
-                  <div className="w-10 h-10 rounded-xl bg-terracotta/10 flex items-center justify-center shrink-0"><i className="fas fa-envelope text-terracotta" /></div>
-                  <div>
-                    <p className="font-body font-semibold text-brown-dark text-sm">Email</p>
-                    <p className="text-sm text-text-light font-body mt-0.5">info@enlasnubesrestobar.net</p>
-                  </div>
-                </a>
-                <a href="https://wa.me/34941578451?text=Hola%2C%20me%20gustar%C3%ADa%20reservar%20en%20En%20Las%20Nubes%20Restobar." target="_blank" rel="noopener noreferrer" className="flex items-start gap-4 p-4 rounded-2xl bg-green-50 border border-green-200/60 hover:border-green-300 transition-all group">
-                  <div className="w-10 h-10 rounded-xl bg-green-500/10 flex items-center justify-center shrink-0"><i className="fab fa-whatsapp text-green-600" /></div>
-                  <div>
-                    <p className="font-body font-semibold text-brown-dark text-sm">WhatsApp</p>
-                    <p className="text-sm text-text-light font-body mt-0.5">Escríbenos directamente</p>
-                  </div>
-                </a>
-              </div>
-            </AnimatedSection>
-
-            {/* Schedule */}
-            <AnimatedSection direction="left" delay={0.1}>
-              <div className="p-5 rounded-2xl bg-brown-dark/[0.02] border border-brown-dark/[0.04]">
-                <div className="flex items-center gap-2 mb-4">
-                  <i className="fas fa-clock text-terracotta" />
-                  <h3 className="font-display font-semibold text-brown-dark text-base">Horario Semanal</h3>
                 </div>
-                <div className="space-y-2">
+              </div>
+
+              {/* Horario */}
+              <div className="p-5 rounded-2xl bg-brown-dark/[0.02] border border-brown-dark/[0.04]">
+                <h4 className="flex items-center gap-2 font-display font-semibold text-brown-dark text-sm mb-3">
+                  <i className="fas fa-calendar-alt text-terracotta text-xs" /> Horario Semanal
+                </h4>
+                <div className="space-y-1.5">
                   {schedule.map((item, i) => (
-                    <div key={item.day} className={`flex items-center justify-between py-2 px-3 rounded-lg text-sm font-body transition-colors ${i === todayIndex ? 'bg-terracotta/10 border border-terracotta/15' : ''}`}>
-                      <span className={`font-medium ${i === todayIndex ? 'text-terracotta' : item.closed ? 'text-text-light/30' : 'text-text-medium'}`}>
-                        {item.day}
-                        {i === todayIndex && <span className="ml-2 text-[10px] uppercase tracking-wider text-terracotta/60 font-semibold">Hoy</span>}
-                      </span>
-                      <span className={item.closed ? 'text-text-light/25 italic' : 'text-text-light'}>
-                        {item.hours}
-                      </span>
+                    <div key={item.day} className={`flex justify-between py-1.5 px-3 rounded text-sm font-body ${i === todayIndex ? 'bg-terracotta/10 font-medium' : ''}`}>
+                      <span className={i === todayIndex ? 'text-terracotta' : item.closed ? 'text-text-light/40' : 'text-text-medium'}>{item.day}{i === todayIndex && ' · Hoy'}</span>
+                      <span className={item.closed ? 'text-text-light/30 italic' : 'text-text-light'}>{item.hours}</span>
                     </div>
                   ))}
                 </div>
-                <p className="mt-4 text-[11px] text-text-light/30 font-body leading-relaxed">
-                  Los viernes noche, sábados y domingos al mediodía disponemos de dos turnos por servicio. Consulta disponibilidad llamando al restaurante.
+                <p className="mt-3 text-[11px] text-text-light/40 font-body leading-relaxed">
+                  <i className="fas fa-info-circle mr-1" />Los viernes noche, sábados y domingos al mediodía disponemos de dos turnos por servicio debido a la alta demanda. Consulta disponibilidad llamando al restaurante.
                 </p>
               </div>
-            </AnimatedSection>
-          </div>
 
-          {/* Map + Form */}
-          <div className="lg:col-span-3 space-y-8">
-            <AnimatedSection direction="right">
-              <div className="rounded-3xl overflow-hidden border border-brown-dark/[0.06] shadow-lg h-64 sm:h-80">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2943.5!2d-2.447!3d42.4635!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd5b3a0c0b0b0b0b%3A0x0!2sCalle+Maria+Teresa+Gil+de+G%C3%A1rate+16%2C+26002+Logro%C3%B1o!5e0!3m2!1ses!2ses!4v1700000000000!5m2!1ses!2ses"
-                  width="100%" height="100%" style={{ border: 0 }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade"
-                  title="Ubicación de En Las Nubes Restobar"
-                />
+              {/* Redes */}
+              <div className="flex gap-3">
+                <a href="https://www.instagram.com/enlasnubes_restobar/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-lg bg-brown-dark/5 flex items-center justify-center text-text-light hover:text-terracotta transition-colors" aria-label="Instagram"><i className="fab fa-instagram" /></a>
+                <a href="https://www.facebook.com/enlasNubesRestobar" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-lg bg-brown-dark/5 flex items-center justify-center text-text-light hover:text-terracotta transition-colors" aria-label="Facebook"><i className="fab fa-facebook-f" /></a>
+                <a href="https://www.tripadvisor.es/Restaurant_Review-g187513-d8531456-Reviews-En_las_Nubes_Restobar-Logrono_La_Rioja.html" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-lg bg-brown-dark/5 flex items-center justify-center text-text-light hover:text-terracotta transition-colors" aria-label="TripAdvisor"><i className="fab fa-tripadvisor" /></a>
+                <a href="https://www.ubereats.com/es/store/en-las-nubes-restobar/wep1Cog2SfSkmRSK2rJrzg" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-lg bg-green-50 flex items-center justify-center text-green-600 hover:text-green-700 transition-colors" aria-label="Uber Eats"><i className="fab fa-ubisoft" /></a>
               </div>
-            </AnimatedSection>
+            </div>
+          </AnimatedSection>
 
-            {/* Reservation form */}
-            <AnimatedSection direction="right" delay={0.1}>
-              <div className="p-6 sm:p-8 rounded-3xl bg-brown-dark/[0.02] border border-brown-dark/[0.04]">
-                <h3 className="font-display text-xl sm:text-2xl font-bold text-brown-dark mb-6">Reservar Mesa</h3>
+          {/* Mapa + Formulario */}
+          <AnimatedSection direction="right" delay={0.1}>
+            <div className="space-y-6">
+              <div className="rounded-2xl overflow-hidden border border-brown-dark/[0.06] shadow-warm h-56 sm:h-64">
+                <iframe src="https://maps.google.com/maps?q=En+Las+Nubes+Restobar,+C%2F+Mar%C3%ADa+Teresa+Gil+de+G%C3%A1rate+16,+26002+Logro%C3%B1o,+La+Rioja&t=&z=17&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style={{ border: 0 }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="Ubicación En Las Nubes Restobar" />
+              </div>
 
+              <div className="p-6 rounded-2xl bg-brown-dark/[0.02] border border-brown-dark/[0.04]">
+                <h3 className="font-display text-lg font-bold text-brown-dark mb-5">Reservar Mesa</h3>
                 {sent ? (
-                  <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="text-center py-10">
-                    <span className="text-4xl block mb-4">✅</span>
-                    <p className="font-display text-lg text-brown-dark font-semibold">Solicitud enviada</p>
-                    <p className="text-sm text-text-light font-body mt-2">Nos pondremos en contacto contigo para confirmar la reserva.</p>
+                  <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="text-center py-8">
+                    <span className="text-3xl block mb-3">✅</span>
+                    <p className="font-display text-brown-dark font-semibold">Solicitud enviada</p>
+                    <p className="text-sm text-text-light font-body mt-2">Nos pondremos en contacto contigo para confirmar.</p>
                   </motion.div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-4">
-                    <div className="grid sm:grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-xs font-body font-medium text-text-light uppercase tracking-wider mb-1.5">Nombre *</label>
-                        <input type="text" required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className="w-full px-4 py-3 rounded-xl bg-white/60 border border-brown-dark/10 text-brown-dark font-body text-sm placeholder:text-text-light/50 focus:outline-none focus:border-terracotta/30 focus:ring-2 focus:ring-terracotta/10 transition-all" placeholder="Tu nombre" />
-                      </div>
-                      <div>
-                        <label className="block text-xs font-body font-medium text-text-light uppercase tracking-wider mb-1.5">Teléfono *</label>
-                        <input type="tel" required value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} className="w-full px-4 py-3 rounded-xl bg-white/60 border border-brown-dark/10 text-brown-dark font-body text-sm placeholder:text-text-light/50 focus:outline-none focus:border-terracotta/30 focus:ring-2 focus:ring-terracotta/10 transition-all" placeholder="600 000 000" />
-                      </div>
+                  <form onSubmit={handleSubmit} className="space-y-3">
+                    <div className="grid sm:grid-cols-2 gap-3">
+                      <input type="text" required value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} placeholder="Nombre *" className="w-full px-3 py-2.5 rounded-lg bg-white/60 border border-brown-dark/10 text-brown-dark font-body text-sm placeholder:text-text-light/40 focus:outline-none focus:border-terracotta/30 transition-all" />
+                      <input type="tel" required value={form.phone} onChange={e => setForm({ ...form, phone: e.target.value })} placeholder="Teléfono *" className="w-full px-3 py-2.5 rounded-lg bg-white/60 border border-brown-dark/10 text-brown-dark font-body text-sm placeholder:text-text-light/40 focus:outline-none focus:border-terracotta/30 transition-all" />
                     </div>
-                    <div>
-                      <label className="block text-xs font-body font-medium text-text-light uppercase tracking-wider mb-1.5">Email</label>
-                      <input type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className="w-full px-4 py-3 rounded-xl bg-white/60 border border-brown-dark/10 text-brown-dark font-body text-sm placeholder:text-text-light/50 focus:outline-none focus:border-terracotta/30 focus:ring-2 focus:ring-terracotta/10 transition-all" placeholder="tu@email.com" />
+                    <div className="grid grid-cols-3 gap-3">
+                      <input type="date" required value={form.date} onChange={e => setForm({ ...form, date: e.target.value })} className="w-full px-3 py-2.5 rounded-lg bg-white/60 border border-brown-dark/10 text-brown-dark font-body text-sm focus:outline-none focus:border-terracotta/30 transition-all" />
+                      <select required value={form.time} onChange={e => setForm({ ...form, time: e.target.value })} className="w-full px-3 py-2.5 rounded-lg bg-white/60 border border-brown-dark/10 text-brown-dark font-body text-sm focus:outline-none focus:border-terracotta/30 transition-all">
+                        <option value="">Hora</option>
+                        {['13:00','13:30','14:00','14:30','15:00','20:00','20:30','21:00','21:30','22:00'].map(t => <option key={t} value={t}>{t}</option>)}
+                      </select>
+                      <select required value={form.guests} onChange={e => setForm({ ...form, guests: e.target.value })} className="w-full px-3 py-2.5 rounded-lg bg-white/60 border border-brown-dark/10 text-brown-dark font-body text-sm focus:outline-none focus:border-terracotta/30 transition-all">
+                        <option value="">Personas</option>
+                        {[1,2,3,4,5,6,7,8,9,10].map(n => <option key={n} value={n}>{n}</option>)}
+                        <option value="10+">10+</option>
+                      </select>
                     </div>
-                    <div className="grid grid-cols-3 gap-4">
-                      <div>
-                        <label className="block text-xs font-body font-medium text-text-light uppercase tracking-wider mb-1.5">Fecha *</label>
-                        <input type="date" required value={form.date} onChange={(e) => setForm({ ...form, date: e.target.value })} className="w-full px-4 py-3 rounded-xl bg-white/60 border border-brown-dark/10 text-brown-dark font-body text-sm focus:outline-none focus:border-terracotta/30 focus:ring-2 focus:ring-terracotta/10 transition-all" />
-                      </div>
-                      <div>
-                        <label className="block text-xs font-body font-medium text-text-light uppercase tracking-wider mb-1.5">Hora *</label>
-                        <select required value={form.time} onChange={(e) => setForm({ ...form, time: e.target.value })} className="w-full px-4 py-3 rounded-xl bg-white/60 border border-brown-dark/10 text-brown-dark font-body text-sm focus:outline-none focus:border-terracotta/30 focus:ring-2 focus:ring-terracotta/10 transition-all">
-                          <option value="">--:--</option>
-                          {['13:00','13:30','14:00','14:30','15:00','20:00','20:30','21:00','21:30','22:00'].map(t => <option key={t} value={t}>{t}</option>)}
-                        </select>
-                      </div>
-                      <div>
-                        <label className="block text-xs font-body font-medium text-text-light uppercase tracking-wider mb-1.5">Personas *</label>
-                        <select required value={form.guests} onChange={(e) => setForm({ ...form, guests: e.target.value })} className="w-full px-4 py-3 rounded-xl bg-white/60 border border-brown-dark/10 text-brown-dark font-body text-sm focus:outline-none focus:border-terracotta/30 focus:ring-2 focus:ring-terracotta/10 transition-all">
-                          <option value="">-</option>
-                          {[1,2,3,4,5,6,7,8,9,10].map(n => <option key={n} value={n}>{n}</option>)}
-                          <option value="10+">10+</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div>
-                      <label className="block text-xs font-body font-medium text-text-light uppercase tracking-wider mb-1.5">Comentarios</label>
-                      <textarea rows={3} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} className="w-full px-4 py-3 rounded-xl bg-white/60 border border-brown-dark/10 text-brown-dark font-body text-sm placeholder:text-text-light/50 focus:outline-none focus:border-terracotta/30 focus:ring-2 focus:ring-terracotta/10 transition-all resize-none" placeholder="Alergias, sillas para niños, preferencias..." />
-                    </div>
-                    <p className="text-[10px] text-text-light/30 font-body leading-relaxed">
-                      Al enviar este formulario, aceptas nuestra política de privacidad. Tus datos se usarán exclusivamente para gestionar tu reserva.
-                    </p>
-                    <button type="submit" className="btn-primary w-full text-sm py-4">Enviar Solicitud de Reserva</button>
-                    <p className="text-center text-xs text-text-light/30 font-body">
-                      O reserva al instante: <a href="tel:+34941578451" className="text-terracotta/60 underline hover:text-terracotta transition-colors">llama al 941 57 84 51</a> o por <a href="https://wa.me/34941578451" target="_blank" rel="noopener noreferrer" className="text-green-600/70 underline hover:text-green-600 transition-colors">WhatsApp</a>
+                    <textarea rows={2} value={form.message} onChange={e => setForm({ ...form, message: e.target.value })} placeholder="Comentarios (alergias, preferencias...)" className="w-full px-3 py-2.5 rounded-lg bg-white/60 border border-brown-dark/10 text-brown-dark font-body text-sm placeholder:text-text-light/40 focus:outline-none focus:border-terracotta/30 transition-all resize-none" />
+                    <button type="submit" className="btn-primary w-full text-sm py-3">Enviar Solicitud de Reserva</button>
+                    <p className="text-center text-xs text-text-light/40 font-body">
+                      O llama al <a href="tel:+34941578451" className="text-terracotta/60 underline">941 57 84 51</a>
                     </p>
                   </form>
                 )}
               </div>
-            </AnimatedSection>
-          </div>
+            </div>
+          </AnimatedSection>
         </div>
       </div>
     </section>

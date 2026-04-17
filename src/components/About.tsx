@@ -1,78 +1,75 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import AnimatedSection from './AnimatedSection'
+import { images } from '@/data/images'
 
+// Textos extraídos de la web actual
 const features = [
-  { icon: 'fa-utensils', title: 'Cocina Fusión', desc: 'Asturiana, alemana, canaria y mediterránea en cada plato' },
-  { icon: 'fa-cloud', title: 'Ambiente Único', desc: 'Decoración vintage con terraza en el corazón de Logroño' },
-  { icon: 'fa-star', title: 'Especialidad Cachopos', desc: 'Considerados de los mejores de Logroño' },
-  { icon: 'fa-leaf', title: 'Opciones para Todos', desc: 'Platos sin gluten y vegetarianos disponibles' },
+  { icon: 'fa-cloud', text: 'Terraza al aire libre' },
+  { icon: 'fa-leaf', text: 'Opciones sin gluten' },
+  { icon: 'fa-seedling', text: 'Opciones vegetarianas' },
+  { icon: 'fa-wine-glass-alt', text: 'Vinos de La Rioja' },
 ]
 
 export default function About() {
   return (
-    <section id="nosotros" className="section-cream relative py-24 sm:py-32">
+    <section id="about" className="section-cream relative py-24 sm:py-32">
       <div className="section-padding">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Image */}
+          {/* Images — mismas fotos que la web actual */}
           <AnimatedSection direction="left">
-            <div className="relative rounded-3xl overflow-hidden shadow-warm-lg">
-              <img
-                src="/fotos/COMEDOR EN LAS NUBES.jpg"
-                alt="Interior de En Las Nubes Restobar"
-                className="w-full h-[400px] sm:h-[500px] object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-brown-dark/30 to-transparent" />
-              {/* Floating badge */}
-              <motion.div
-                initial={{ scale: 0, rotate: -10 }}
-                whileInView={{ scale: 1, rotate: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.5, type: 'spring', stiffness: 200 }}
-                className="absolute bottom-6 right-6 bg-white/90 backdrop-blur-sm rounded-2xl p-4 shadow-warm"
-              >
-                <p className="font-display text-3xl font-bold text-terracotta">99</p>
-                <p className="text-xs text-text-medium font-body">Comensales</p>
-              </motion.div>
+            <div className="about-images">
+              <div className="about-img-main">
+                <img
+                  src={images.aboutMain}
+                  alt="Entrada En Las Nubes Restobar"
+                  loading="lazy"
+                  className="w-full h-[350px] sm:h-[450px] object-cover rounded-2xl shadow-warm"
+                />
+              </div>
+              <div className="about-img-accent mt-4">
+                <img
+                  src={images.aboutAccent}
+                  alt="Comedor En Las Nubes Restobar"
+                  loading="lazy"
+                  className="w-full h-[200px] sm:h-[250px] object-cover rounded-2xl shadow-warm"
+                />
+              </div>
             </div>
           </AnimatedSection>
 
-          {/* Text */}
+          {/* Text — texto real de la web actual */}
           <div>
             <AnimatedSection direction="right">
-              <span className="text-xs uppercase tracking-[0.3em] text-terracotta/50 font-body font-semibold">
-                Nuestra historia
-              </span>
+              <div className="section-header" style={{ textAlign: 'left' }}>
+                <div className="label">
+                  <svg viewBox="0 0 40 24" fill="none" style={{ width: '18px', height: '12px', display: 'inline-block', verticalAlign: 'middle', marginRight: '6px' }}>
+                    <path d="M8,20 C4.5,20 2,17.5 2,14.5 C2,11.8 4,9.6 6.5,9.2 C6.8,6.2 9.4,4 12.5,4 C14.8,4 16.8,5.2 17.8,7 C18.5,6.4 19.5,6 20.5,6 C22.8,6 24.7,7.8 24.8,10.2 C27.2,10.6 29,12.6 29,15 C29,17.8 26.8,20 24,20 Z" fill="currentColor" opacity="0.5" />
+                  </svg>
+                  <span className="text-xs uppercase tracking-[0.3em] text-terracotta/50 font-body font-semibold">Nuestra Historia</span>
+                </div>
+              </div>
               <h2 className="mt-4 font-display text-3xl sm:text-4xl md:text-5xl font-bold text-brown-dark">
-                Bienvenidos a{' '}
-                <span className="gradient-text-terracotta">En Las Nubes</span>
+                Un lugar <span className="italic text-terracotta">sobre Logroño</span>
               </h2>
-              <p className="mt-6 text-text-medium font-body leading-relaxed max-w-lg">
-                En pleno centro de Logroño, en una calle peatonal junto a Gran Vía, 
-                encontrarás un rincón donde tres cocinas se funden para crear experiencias 
-                únicas. Nuestra carta combina lo mejor de la gastronomía asturiana, alemana 
-                y mediterránea con un toque canario.
+              <p className="mt-6 text-text-medium font-body leading-relaxed">
+                En pleno centro histórico de Logroño, a tan solo 5 minutos del casco antiguo y de la Gran Vía, encontrarás un espacio con mucho encanto donde degustar lo mejor de la gastronomía internacional.
               </p>
-              <p className="mt-4 text-text-medium font-body leading-relaxed max-w-lg">
-                Con capacidad para 99 personas entre nuestro acogedor interior y nuestra 
-                terraza, somos el lugar perfecto para cualquier ocasión: una comida de 
-                negocios, una cena romántica o una reunión con amigos.
+              <p className="mt-4 text-text-medium font-body leading-relaxed">
+                Nuestro estilo industrial y vintage, combinado con una terraza en calle peatonal tranquila, crea el ambiente perfecto para disfrutar de una comida memorable con amigos, familia o compañeros de trabajo.
+              </p>
+              <p className="mt-4 text-text-medium font-body leading-relaxed">
+                Con capacidad para 99 personas (55 en interior y 44 en terraza), somos el lugar ideal para cualquier celebración.
               </p>
             </AnimatedSection>
 
-            {/* Features grid */}
-            <div className="mt-10 grid sm:grid-cols-2 gap-4">
+            {/* Features — mismos que la web actual */}
+            <div className="mt-8 grid grid-cols-2 gap-3">
               {features.map((feat, i) => (
-                <AnimatedSection key={feat.title} direction="right" delay={0.1 + i * 0.1}>
-                  <div className="flex items-start gap-4 p-4 rounded-2xl bg-brown-dark/[0.02] border border-brown-dark/[0.04] hover:border-terracotta/15 transition-all">
-                    <div className="w-10 h-10 rounded-xl bg-terracotta/10 flex items-center justify-center shrink-0">
-                      <i className={`fas ${feat.icon} text-terracotta text-sm`} />
-                    </div>
-                    <div>
-                      <h3 className="font-display font-semibold text-brown-dark text-sm">{feat.title}</h3>
-                      <p className="mt-1 text-xs text-text-light font-body leading-relaxed">{feat.desc}</p>
-                    </div>
+                <AnimatedSection key={feat.text} direction="right" delay={0.1 + i * 0.05}>
+                  <div className="flex items-center gap-3 py-2">
+                    <i className={`fas ${feat.icon} text-terracotta text-sm`} />
+                    <span className="text-sm text-text-medium font-body">{feat.text}</span>
                   </div>
                 </AnimatedSection>
               ))}
